@@ -9,13 +9,31 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
 const platform_browser_1 = require("@angular/platform-browser");
 const app_component_1 = require("./app.component");
+const router_1 = require("@angular/router");
+const landing_component_1 = require("./landing/landing.component");
+const create_account_component_1 = require("./create-account/create-account.component");
+var routes = [
+    {
+        path: '',
+        component: landing_component_1.LandingComponent
+    },
+    {
+        path: 'create-account',
+        component: create_account_component_1.CreateAccountComponent
+    }
+];
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule],
+        imports: [
+            platform_browser_1.BrowserModule,
+            router_1.RouterModule.forRoot(routes)
+        ],
         declarations: [
-            app_component_1.AppComponent
+            app_component_1.AppComponent,
+            landing_component_1.LandingComponent,
+            create_account_component_1.CreateAccountComponent
         ],
         bootstrap: [
             app_component_1.AppComponent
