@@ -12,6 +12,7 @@ const app_component_1 = require("./app.component");
 const router_1 = require("@angular/router");
 const landing_component_1 = require("./landing/landing.component");
 const create_account_component_1 = require("./create-account/create-account.component");
+const edit_account_component_1 = require("./edit-account/edit-account.component");
 var routes = [
     {
         path: '',
@@ -20,6 +21,10 @@ var routes = [
     {
         path: 'create-account',
         component: create_account_component_1.CreateAccountComponent
+    },
+    {
+        path: 'edit-account',
+        component: edit_account_component_1.EditAccountComponent
     }
 ];
 let AppModule = class AppModule {
@@ -33,7 +38,8 @@ AppModule = __decorate([
         declarations: [
             app_component_1.AppComponent,
             landing_component_1.LandingComponent,
-            create_account_component_1.CreateAccountComponent
+            create_account_component_1.CreateAccountComponent,
+            edit_account_component_1.EditAccountComponent
         ],
         bootstrap: [
             app_component_1.AppComponent

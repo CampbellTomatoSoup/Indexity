@@ -5,6 +5,7 @@ import { RouterModule, Routes }   from '@angular/router';
 
 import { LandingComponent }   from './landing/landing.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { EditAccountComponent } from './edit-account/edit-account.component';
 
 var routes = [
   {
@@ -14,6 +15,10 @@ var routes = [
   {
     path: 'create-account',
     component: CreateAccountComponent
+  },
+  {
+    path: 'edit-account',
+    component: EditAccountComponent
   }
 ];
 
@@ -25,7 +30,8 @@ var routes = [
     declarations: [
         AppComponent,
         LandingComponent,
-        CreateAccountComponent
+        CreateAccountComponent,
+        EditAccountComponent
     ], 
     bootstrap: [
         AppComponent

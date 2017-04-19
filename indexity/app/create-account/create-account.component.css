@@ -1,12 +1,16 @@
-h1 {
-    font-family: Cuprum;
-    color: #64519E;
-}
-
-h3 {
-    font-family: Cuprum;
-}
-
 .border-left {
     border-left: 1px solid black;
+}
+
+#signup {
+    text-align: center;
+}
+
+.icons {
+    display: flex;
+    justify-content: center;
+}
+
+.icons a {
+    margin: 2px;
 }

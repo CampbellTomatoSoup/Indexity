@@ -7,14 +7,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
-let LandingComponent = class LandingComponent {
+let EditAccountComponent = class EditAccountComponent {
 };
-LandingComponent = __decorate([
+EditAccountComponent = __decorate([
     core_1.Component({
-        selector: 'landing',
-        templateUrl: './app/landing/landing.component.html',
-        styleUrls: ['./app/landing/landing.component.css']
+        selector: 'edit-account',
+        templateUrl: './app/edit-account/edit-account.component.html',
+        styleUrls: ['./app/edit-account/edit-account.component.css']
     })
-], LandingComponent);
-exports.LandingComponent = LandingComponent;
-//# sourceMappingURL=landing.component.js.map
+], EditAccountComponent);
+exports.EditAccountComponent = EditAccountComponent;
+//# sourceMappingURL=edit-account.component.js.map
