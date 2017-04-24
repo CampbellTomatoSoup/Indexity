@@ -10,8 +10,10 @@ const core_1 = require("@angular/core");
 const platform_browser_1 = require("@angular/platform-browser");
 const app_component_1 = require("./app.component");
 const router_1 = require("@angular/router");
+const search_component_1 = require("./search/search.component");
 const landing_component_1 = require("./landing/landing.component");
 const create_account_component_1 = require("./create-account/create-account.component");
+const piechart_component_1 = require("./piechart/piechart.component");
 var routes = [
     {
         path: '',
@@ -20,6 +22,14 @@ var routes = [
     {
         path: 'create-account',
         component: create_account_component_1.CreateAccountComponent
+    },
+    {
+        path: 'search',
+        component: search_component_1.SearchComponent
+    },
+    {
+        path: 'piechart',
+        component: piechart_component_1.PiechartComponent
     }
 ];
 let AppModule = class AppModule {
@@ -33,7 +43,9 @@ AppModule = __decorate([
         declarations: [
             app_component_1.AppComponent,
             landing_component_1.LandingComponent,
-            create_account_component_1.CreateAccountComponent
+            create_account_component_1.CreateAccountComponent,
+            search_component_1.SearchComponent,
+            piechart_component_1.PiechartComponent
         ],
         bootstrap: [
             app_component_1.AppComponent
