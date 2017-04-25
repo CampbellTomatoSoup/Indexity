@@ -1,3 +1,4 @@
+import { ResourcesComponent } from './resources/resources.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
@@ -19,6 +20,10 @@ var routes = [
   {
     path: 'edit-account',
     component: EditAccountComponent
+  },
+  {
+    path: 'resources',
+    component: ResourcesComponent
   }
 ];
 
@@ -31,7 +36,8 @@ var routes = [
         AppComponent,
         LandingComponent,
         CreateAccountComponent,
-        EditAccountComponent
+        EditAccountComponent,
+        ResourcesComponent
     ], 
     bootstrap: [
         AppComponent

@@ -6,6 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const resources_component_1 = require("./resources/resources.component");
 const core_1 = require("@angular/core");
 const platform_browser_1 = require("@angular/platform-browser");
 const app_component_1 = require("./app.component");
@@ -25,6 +26,10 @@ var routes = [
     {
         path: 'edit-account',
         component: edit_account_component_1.EditAccountComponent
+    },
+    {
+        path: 'resources',
+        component: resources_component_1.ResourcesComponent
     }
 ];
 let AppModule = class AppModule {
@@ -39,7 +44,8 @@ AppModule = __decorate([
             app_component_1.AppComponent,
             landing_component_1.LandingComponent,
             create_account_component_1.CreateAccountComponent,
-            edit_account_component_1.EditAccountComponent
+            edit_account_component_1.EditAccountComponent,
+            resources_component_1.ResourcesComponent
         ],
         bootstrap: [
             app_component_1.AppComponent
