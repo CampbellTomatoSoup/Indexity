@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { D3Service } from 'd3-ng2-service';
 
 @Component({
   selector: 'piechart',
