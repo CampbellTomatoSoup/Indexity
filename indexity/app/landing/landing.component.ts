@@ -4,70 +4,79 @@ import { APIRepository } from '../api/user-repository';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { Location }               from '@angular/common';
+import { Location }               from '@angular/common'; 
 
 @Component({
   //moduleId: module.id,
   selector: 'landing',
   templateUrl: './app/landing/landing.component.html',
-  styleUrls: [ './app/landing/landing.component.css' ]
+  styleUrls: [ './app/landing/landing.component.css' ],
+  providers: [ APIRepository ]
 })
 
 export class LandingComponent { 
+  errorMessage: null | string = null;
+  mode = 'Promise';
+  theId: string;
   usr =  new User('','');
-  userService: APIRepository;
   location: Location;
 
-  /*constructor(
-    private userService: APIRepository,
-    private route: ActivatedRoute,
-    private location: Location
-  ) {}*/
+  constructor (private userService: APIRepository, private router: Router) {}
 
   verify(usr: string, pswd: string) : void {
-    this.usr.userName = usr;
+    this.usr.username = usr;
     this.usr.password = pswd;
     console.log(this.usr);
-
-    //this.userService.login(this.usr)
-    //.then(() => this.goBack());
   }
+
+  login(theUser: User) {
+    console.log(theUser);
+    if (!theUser) { return; }
+
+    this.userService.login(theUser)
+    .then (
+      id  => {
+        this.theId = id;
+        // this.router.navigateByUrl('/search');
+            }
+        )
+      // error =>  this.errorMessage = <any>error)
+    .catch(
+      err => {
+        alert('login failed!');
+        this.errorMessage = err;
+      }
+    );
+  }
+
+  /*
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.heroService.create(name)
+      .then(hero => {
+        this.heroes.push(hero);
+        this.selectedHero = null;
+      });
+  }
+  */
+
+  /*
+  create(name: string): Promise<Hero> {
+    return this.http
+      .post(this.heroesUrl, JSON.stringify({name: name}), {headers: this.headers})
+      .toPromise()
+      .then(res => res.json().data as Hero)
+      .catch(this.handleError);
+  }
+  */
 
   goBack(): void {
     this.location.back();
   }
 
-  //constructor (private router: Router, private route: ActivatedRoute, private movieRepository: UserRepository) { }
-
-  /*ngOnInit() {
-		this.route.params.subscribe (x => {
-			this.loadUser(+x['id']);
-		});
-	}*/
-
   submitted = false;
   onSubmit() {
     this.submitted = true;
   }
-
-  
-  
-  
-  //constructor (private router: Router, private route: ActivatedRoute, private userRepository: UserRepository) { }
-
-  /*ngOnInit() {
-		this.route.params.subscribe (x => {
-			this.loadUser(+x['id']);
-		});
-	}
-
-  loadUser (id: number) {
-		if (id) {
-			this.user = this.userRepository.get(id);
-		}
-	}
-
-	go(path : string) {
-        //this.router.navigate([path]);
-  }*/
 }

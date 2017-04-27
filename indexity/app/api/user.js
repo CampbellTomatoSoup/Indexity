@@ -12,8 +12,8 @@ class User {
     salary: number;
     password: string;
     saved: { city: string, dateSaved: string }[];*/
-    constructor(userName, password) {
-        this.userName = userName;
+    constructor(username, password) {
+        this.username = username;
         this.password = password;
     }
 }
