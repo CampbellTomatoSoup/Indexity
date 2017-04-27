@@ -9,4 +9,6 @@ import { Component, OnInit } from '@angular/core';
 export class ResourcesComponent implements OnInit {
 
 	ngOnInit() { }
+
+	
 }
