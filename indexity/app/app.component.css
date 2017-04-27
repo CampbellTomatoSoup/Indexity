@@ -3,8 +3,13 @@
 }
 
 h1 {
+    font-size: 48px;
     font-family: Cuprum;
     color: #64519E;
+}
+
+h2 {
+    font-size: 36px;
 }
 
 footer {
@@ -14,5 +19,5 @@ footer {
 
 .dropdown {
     float: right;
-    margin: 20px;
+    margin-top: 20px;
 }

@@ -11,9 +11,14 @@ const core_1 = require("@angular/core");
 const platform_browser_1 = require("@angular/platform-browser");
 const app_component_1 = require("./app.component");
 const router_1 = require("@angular/router");
+const mock_api_service_1 = require("./mock-api.service");
+const forms_1 = require("@angular/forms");
+const http_1 = require("@angular/http");
+const angular_in_memory_web_api_1 = require("angular-in-memory-web-api");
 const landing_component_1 = require("./landing/landing.component");
 const create_account_component_1 = require("./create-account/create-account.component");
 const edit_account_component_1 = require("./edit-account/edit-account.component");
+const user_repository_1 = require("./api/user-repository");
 var routes = [
     {
         path: '',
@@ -38,7 +43,10 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [
             platform_browser_1.BrowserModule,
-            router_1.RouterModule.forRoot(routes)
+            forms_1.FormsModule,
+            router_1.RouterModule.forRoot(routes),
+            http_1.HttpModule,
+            angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(mock_api_service_1.MockApiService)
         ],
         declarations: [
             app_component_1.AppComponent,
@@ -46,6 +54,9 @@ AppModule = __decorate([
             create_account_component_1.CreateAccountComponent,
             edit_account_component_1.EditAccountComponent,
             resources_component_1.ResourcesComponent
+        ],
+        providers: [
+            user_repository_1.APIRepository
         ],
         bootstrap: [
             app_component_1.AppComponent

@@ -7,17 +7,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
-let AppComponent = class AppComponent {
-    constructor() {
-        this.title = "Indexity";
-    }
+let UserRepository = class UserRepository {
 };
-AppComponent = __decorate([
-    core_1.Component({
-        selector: 'app',
-        templateUrl: './app/app.component.html',
-        styleUrls: ['./app/app.component.css'],
-    })
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+UserRepository = __decorate([
+    core_1.Injectable()
+], UserRepository);
+exports.UserRepository = UserRepository;
+//# sourceMappingURL=user-repository.service.js.map
