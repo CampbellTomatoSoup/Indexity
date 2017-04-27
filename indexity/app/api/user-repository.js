@@ -18,13 +18,15 @@ let APIRepository = class APIRepository {
     constructor(http) {
         this.http = http;
         this.headers = new http_2.Headers({ 'Content-Type': 'application/json' });
-        this.__url = "54.213.29.40/api";
+        this.__url = "http://vapeboyz.xyz/api/user/login";
     }
     login(user) {
-        const url = `${this.__url}/user`;
-        return this.http.post(url, `{"username": ${user.userName}, password: ${user.password}`, this.headers)
+        let options = new http_2.RequestOptions({ headers: this.headers });
+        const url = this.__url;
+        console.log(url);
+        return this.http.post(url, JSON.stringify({ "username": user.username, "password": user.password }), options)
             .toPromise()
-            .then(response => response.json().data)
+            .then(response => response.json().data.userid)
             .catch(this.handleError);
     }
     verify(username, password) {
