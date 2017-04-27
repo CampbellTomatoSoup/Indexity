@@ -2,23 +2,25 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import {Headers} from '@angular/http';
+import { Headers, RequestOptions } from '@angular/http';
 import { User } from '../api/user';
 
 @Injectable()
 export class APIRepository {
 private headers = new Headers({'Content-Type': 'application/json'});
-private __url = "54.213.29.40/api";
+private __url = "http://vapeboyz.xyz/api/user/login";
 
 constructor(private http: Http){
 
 	}
 
-public login(user: User) : Promise<User> {
-  const url = `${this.__url}/user`;
-  return this.http.post(url, `{"username": ${user.userName}, password: ${user.password}`, this.headers)
+public login(user: User) : Promise<string> {
+  let options = new RequestOptions({ headers: this.headers });
+  const url = this.__url;
+  console.log(url);
+  return this.http.post(url, JSON.stringify({"username": user.username, "password":user.password}), options)
     .toPromise()
-    .then(response => response.json().data as User)
+    .then(response => response.json().data.userid as string)
     .catch(this.handleError);
 }
 

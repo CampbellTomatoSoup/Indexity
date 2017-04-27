@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { UserRepo } from './api/user-repository';
 
 @Component ({
     selector: 'app',
@@ -9,5 +8,4 @@ import { UserRepo } from './api/user-repository';
 
 export class AppComponent {
     title = "Indexity";
-    userRepo : UserRepo;
 }

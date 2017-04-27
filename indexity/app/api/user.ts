@@ -13,7 +13,7 @@ export class User {
     saved: { city: string, dateSaved: string }[];*/
 
     constructor(
-    public userName: string,
+    public username: string,
     public password: string
   ) {  }
 }
