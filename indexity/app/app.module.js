@@ -11,10 +11,8 @@ const core_1 = require("@angular/core");
 const platform_browser_1 = require("@angular/platform-browser");
 const app_component_1 = require("./app.component");
 const router_1 = require("@angular/router");
-const mock_api_service_1 = require("./mock-api.service");
 const forms_1 = require("@angular/forms");
 const http_1 = require("@angular/http");
-const angular_in_memory_web_api_1 = require("angular-in-memory-web-api");
 const landing_component_1 = require("./landing/landing.component");
 const create_account_component_1 = require("./create-account/create-account.component");
 const edit_account_component_1 = require("./edit-account/edit-account.component");
@@ -35,7 +33,7 @@ var routes = [
     {
         path: 'resources',
         component: resources_component_1.ResourcesComponent
-    }
+    },
 ];
 let AppModule = class AppModule {
 };
@@ -46,7 +44,6 @@ AppModule = __decorate([
             forms_1.FormsModule,
             router_1.RouterModule.forRoot(routes),
             http_1.HttpModule,
-            angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(mock_api_service_1.MockApiService)
         ],
         declarations: [
             app_component_1.AppComponent,
