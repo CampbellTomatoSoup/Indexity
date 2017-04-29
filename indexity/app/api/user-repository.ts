@@ -8,7 +8,8 @@ import { User } from '../api/user';
 @Injectable()
 export class APIRepository {
 private headers = new Headers({'Content-Type': 'application/json'});
-private __url = "http://vapeboyz.xyz/api/user/login";
+
+private __url = "http://54.213.29.40/api";
 
 constructor(private http: Http){
 
@@ -17,18 +18,19 @@ constructor(private http: Http){
 public login(user: User) : Promise<string> {
   let options = new RequestOptions({ headers: this.headers });
   const url = this.__url;
-  console.log(url);
-  return this.http.post(url, JSON.stringify({"username": user.username, "password":user.password}), options)
+	//the url is url + /login to access the login page.
+  return this.http.post(url + '/login', {"username": user.username, "password":user.password})
     .toPromise()
-    .then(response => response.json().data.userid as string)
+    .then(response => res => (<Response>res).json().data.userid as string)
     .catch(this.handleError);
 }
 
 public verify(username: string, password: string): Promise<User> {
   const url = `${this.__url}`;
   return this.http.get(url)
+	/* if the value returned is -1, then go to handleError. else log in. */
   .toPromise()
-  .then(response => response.json().data as User)
+  .then(response => res => (<Response>res).json().data as User)
   .catch(this.handleError);
 }
 
