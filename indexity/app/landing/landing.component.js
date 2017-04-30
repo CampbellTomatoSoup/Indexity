@@ -23,11 +23,6 @@ let LandingComponent = class LandingComponent {
         this.usr = new user_1.User('', '');
         this.submitted = false;
     }
-    verify(usr, pswd) {
-        this.usr.username = usr;
-        this.usr.password = pswd;
-        console.log(this.usr);
-    }
     login(theUser) {
         console.log(theUser);
         if (!theUser) {
@@ -35,12 +30,15 @@ let LandingComponent = class LandingComponent {
         }
         this.userService.login(theUser)
             .then(id => {
-            this.theId = id;
-            //console.log(theId);
-            //this.router.navigateByUrl('/search');
+            this.theId = id._body;
+            if (this.theId != '-1') {
+                this.router.navigateByUrl('/search');
+            }
+            else {
+                this.errorMessage = 'error';
+            }
         })
             .catch(err => {
-            alert('login failed!');
             this.errorMessage = err;
         });
     }

@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
 require("rxjs/add/operator/toPromise");
 const http_1 = require("@angular/http");
-require("rxjs/add/operator/toPromise");
+require("rxjs/add/operator/map");
 const http_2 = require("@angular/http");
 let APIRepository = class APIRepository {
     constructor(http) {
@@ -20,20 +20,17 @@ let APIRepository = class APIRepository {
         this.headers = new http_2.Headers({ 'Content-Type': 'application/json' });
         this.__url = "http://54.213.29.40/api";
     }
+    extractData(res) {
+        let body = res.json();
+        return body.data || {};
+    }
     login(user) {
         let options = new http_2.RequestOptions({ headers: this.headers });
         const url = this.__url;
         //the url is url + /login to access the login page.
         return this.http.post(url + '/login', { "username": user.username, "password": user.password })
             .toPromise()
-            .then(response => res => res.json().data.userid)
-            .catch(this.handleError);
-    }
-    verify(username, password) {
-        const url = `${this.__url}`;
-        return this.http.get(url)
-            .toPromise()
-            .then(response => res => res.json().data)
+            .then(this.extractData.userid)
             .catch(this.handleError);
     }
     handleError(error) {

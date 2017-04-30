@@ -16,7 +16,7 @@
                             <label for="pwd">Password</label>
                             <input name="pwd" type="password" class="form-control" id="pwd" [(ngModel)]="usr.password">
                         </div>
-                        <div class="help-block" *ngIf="errorMessage">Error logging in</div>
+                        <div class="help-block" *ngIf="errorMessage">The username or password you entered is incorrect.</div>
                     </form>
                     <button type="submit" class="btn btn-primary btn-block" (click)="login(usr)">Log In</button>
                     <hr/>
