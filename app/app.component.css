@@ -1,0 +1,23 @@
+.container {
+    font-family: Cuprum;
+}
+
+h1 {
+    font-size: 48px;
+    font-family: Cuprum;
+    color: #64519E;
+}
+
+h2 {
+    font-size: 36px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.dropdown {
+    float: right;
+    margin-top: 20px;
+}

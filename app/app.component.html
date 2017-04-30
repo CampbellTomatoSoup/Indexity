@@ -1,0 +1,33 @@
+<div class="container">
+	<div class="row">
+		<div class = "span 1">
+		<button type="button" class="btn btn-default">
+<span class="glyphicon glyphicon-arrow-left"></span>
+</button>
+<button type="button" class="btn btn-default">
+<span class="glyphicon glyphicon-arrow-right"></span>
+</button>
+</div>
+        <div class="col-sm-8">
+        </div>
+        <div class="col-sm-4">
+            <div class="dropdown">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a routerLink="">Login</a></li>
+                    <li><a href="/search">Search</a></li>
+                    <li><a routerLink="/edit-account">Edit Account</a></li>
+                    <li><a routerLink="/resources">Resources</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+	<router-outlet></router-outlet>
+	<footer>
+        Indexity © 2017
+		<br/>
+		<a>About Us</a> | <a>API</a> | <a>Jobs</a> | <a>Privacy</a> | <a>Terms</a> | <a>Contact Us</a>
+    </footer>
+</div>
