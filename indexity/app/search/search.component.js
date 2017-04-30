@@ -18,8 +18,8 @@ let SearchComponent = class SearchComponent {
 SearchComponent = __decorate([
     core_1.Component({
         selector: 'search',
-        templateUrl: './search.component.html',
-        styleUrls: ['./search.component.css']
+        templateUrl: './app/search/search.component.html',
+        styleUrls: ['./app/search/search.component.css']
     }),
     __metadata("design:paramtypes", [])
 ], SearchComponent);

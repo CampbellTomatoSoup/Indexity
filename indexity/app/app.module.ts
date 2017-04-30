@@ -11,6 +11,7 @@ import { LandingComponent }   from './landing/landing.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { EditAccountComponent } from './edit-account/edit-account.component';
 import { APIRepository } from './api/user-repository';
+import { SearchComponent } from './search/search.component';
 
 var routes = [
   {
@@ -29,6 +30,10 @@ var routes = [
     path: 'resources',
     component: ResourcesComponent
   },
+  {
+    path: 'search',
+    component: SearchComponent
+  }
 ];
 
 @NgModule ({
@@ -44,7 +49,8 @@ var routes = [
         LandingComponent,
         CreateAccountComponent,
         EditAccountComponent,
-        ResourcesComponent
+        ResourcesComponent,
+        SearchComponent
     ],
     providers: [
         APIRepository

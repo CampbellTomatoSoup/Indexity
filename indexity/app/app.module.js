@@ -17,6 +17,7 @@ const landing_component_1 = require("./landing/landing.component");
 const create_account_component_1 = require("./create-account/create-account.component");
 const edit_account_component_1 = require("./edit-account/edit-account.component");
 const user_repository_1 = require("./api/user-repository");
+const search_component_1 = require("./search/search.component");
 var routes = [
     {
         path: '',
@@ -34,6 +35,10 @@ var routes = [
         path: 'resources',
         component: resources_component_1.ResourcesComponent
     },
+    {
+        path: 'search',
+        component: search_component_1.SearchComponent
+    },
 ];
 let AppModule = class AppModule {
 };
@@ -50,7 +55,8 @@ AppModule = __decorate([
             landing_component_1.LandingComponent,
             create_account_component_1.CreateAccountComponent,
             edit_account_component_1.EditAccountComponent,
-            resources_component_1.ResourcesComponent
+            resources_component_1.ResourcesComponent,
+            search_component_1.SearchComponent
         ],
         providers: [
             user_repository_1.APIRepository

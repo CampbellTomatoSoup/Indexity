@@ -4,7 +4,7 @@ import { APIRepository } from '../api/user-repository';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { Location } from '@angular/common'; 
+import { Location } from '@angular/common';
 
 @Component({
   //moduleId: module.id,
@@ -37,7 +37,8 @@ export class LandingComponent {
     .then (
       id  => {
         this.theId = id;
-        // this.router.navigateByUrl('/search');
+        //console.log(theId);
+        //this.router.navigateByUrl('/search');
             }
         )
       // error =>  this.errorMessage = <any>error)
