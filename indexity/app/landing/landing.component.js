@@ -36,7 +36,8 @@ let LandingComponent = class LandingComponent {
         this.userService.login(theUser)
             .then(id => {
             this.theId = id;
-            // this.router.navigateByUrl('/search');
+            //console.log(theId);
+            //this.router.navigateByUrl('/search');
         })
             .catch(err => {
             alert('login failed!');

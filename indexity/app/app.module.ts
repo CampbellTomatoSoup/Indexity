@@ -7,11 +7,11 @@ import { MockApiService } from './mock-api.service';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { InMemoryWebApiModule, InMemoryDbService } from 'angular-in-memory-web-api';
-
 import { LandingComponent }   from './landing/landing.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { EditAccountComponent } from './edit-account/edit-account.component';
 import { APIRepository } from './api/user-repository';
+import { SearchComponent } from './search/search.component';
 
 var routes = [
   {
@@ -29,7 +29,11 @@ var routes = [
   {
     path: 'resources',
     component: ResourcesComponent
-  }
+  },
+  {
+    path: 'search',
+    component: SearchComponent
+  },
 ];
 
 @NgModule ({
@@ -38,18 +42,19 @@ var routes = [
         FormsModule,
         RouterModule.forRoot(routes),
         HttpModule,
-        InMemoryWebApiModule.forRoot(MockApiService)
-    ], 
+        //InMemoryWebApiModule.forRoot(MockApiService)
+    ],
     declarations: [
         AppComponent,
         LandingComponent,
         CreateAccountComponent,
         EditAccountComponent,
-        ResourcesComponent
+        ResourcesComponent,
+        SearchComponent
     ],
     providers: [
         APIRepository
-    ], 
+    ],
     bootstrap: [
         AppComponent
     ]
