@@ -49,6 +49,8 @@ AppModule = __decorate([
             forms_1.FormsModule,
             router_1.RouterModule.forRoot(routes),
             http_1.HttpModule,
+            http_1.JsonpModule
+            //InMemoryWebApiModule.forRoot(MockApiService)
         ],
         declarations: [
             app_component_1.AppComponent,

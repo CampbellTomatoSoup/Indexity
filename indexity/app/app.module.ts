@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { RouterModule, Routes }   from '@angular/router';
 import { MockApiService } from './mock-api.service';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, JsonpModule } from '@angular/http';
 import { InMemoryWebApiModule, InMemoryDbService } from 'angular-in-memory-web-api';
 import { LandingComponent }   from './landing/landing.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
@@ -42,6 +42,7 @@ var routes = [
         FormsModule,
         RouterModule.forRoot(routes),
         HttpModule,
+        JsonpModule
         //InMemoryWebApiModule.forRoot(MockApiService)
     ],
     declarations: [
