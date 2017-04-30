@@ -33,7 +33,7 @@ var routes = [
   {
     path: 'search',
     component: SearchComponent
-  },
+  }
 ];
 
 @NgModule ({
