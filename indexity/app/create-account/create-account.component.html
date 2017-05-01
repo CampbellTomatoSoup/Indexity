@@ -1,36 +1,40 @@
 <div class="container">
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-2">
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-8">
             <h3>Create an Account</h3>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form>
+                    <form #signupForm="ngForm" (ngSubmit)="onSubmit()">
                         <div class="row">
                             <div class="form-group col-xs-6">
-                                <label for="firstname">First Name</label>
-                                <input type="text" class="form-control" id="firstname">
+                              <label for="firstName">First Name</label>
+                              <input type="text" class="form-control" id="firstName" [(ngModel)]="usr.firstName" name="firstName">
                             </div>
                             <div class="form-group col-xs-6">
-                                <label for="lastname">Last Name</label>
-                                <input type="text" class="form-control" id="lastname">
+                              <label for="lastName">Last Name</label>
+                              <input type="text" class="form-control" id="lastName" [(ngModel)]="usr.lastName" name="lastName">
                             </div>
+                            <!--div class="form-group col-xs-2">
+                              <label for="age">Age</label>
+                              <input type="text" class="form-control" id="age" [(ngModel)]="usr.age" name="age">
+                            </div-->
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" id="email">
+                            <input type="text" class="form-control" id="email" [(ngModel)]="usr.email" name="email">
                         </div>
                         <div class="form-group">
                             <label for="usr">Username</label>
-                            <input type="text" class="form-control" id="usr">
+                            <input type="text" class="form-control" id="usr" [(ngModel)]="usr.username" name="usr">
                         </div>
                         <div class="form-group">
                             <label for="pwd">Password</label>
-                            <input type="password" class="form-control" id="pwd">
+                            <input type="password" class="form-control" id="pwd" [(ngModel)]="usr.password" name="pwd">
                         </div>
                     </form>
-                    <button type="button" class="btn btn-primary btn-block">Sign Up</button>
+                    <button type="submit" class="btn btn-primary btn-block" (click)="signup(usr)">Sign Up</button>
                 </div>
             </div>
         </div>

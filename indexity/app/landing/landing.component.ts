@@ -24,12 +24,12 @@ export class LandingComponent {
   constructor (private userService: APIRepository, private router: Router) {}
 
   login(theUser: User) {
-    console.log(theUser);
     if (!theUser) { return; }
     this.userService.login(theUser)
     .then (
       id  => {
         this.theId = id._body;
+        console.log(this.theId);
         if (this.theId != '-1') { this.router.navigateByUrl('/search'); }
         else { this.errorMessage = 'error'; }
       })
