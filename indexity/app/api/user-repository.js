@@ -33,6 +33,15 @@ let APIRepository = class APIRepository {
             .then(this.extractData.userid)
             .catch(this.handleError);
     }
+    signup(user) {
+        let options = new http_2.RequestOptions({ headers: this.headers });
+        const url = this.__url;
+        //the url is url + /login to access the login page.
+        return this.http.post(url + '/signup', { "email": user.email, "username": user.username, "password": user.password, "firstName": user.firstName, "lastName": user.lastName })
+            .toPromise()
+            .then(this.extractData.userid)
+            .catch(this.handleError);
+    }
     handleError(error) {
         console.error('An error occurred', error);
         return Promise.reject(error.message || error);

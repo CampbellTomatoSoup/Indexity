@@ -19,11 +19,23 @@ constructor(private http: Http) { }
 	  return body.data || { };
 	}
 
-public login(user: User) : Promise<string> {
+public login(user: User) : Promise<any> {
   let options = new RequestOptions({ headers: this.headers });
   const url = this.__url;
 	//the url is url + /login to access the login page.
   return this.http.post(url + '/login', {"username": user.username, "password":user.password})
+    .toPromise()
+    .then (
+			this.extractData.userid
+		)
+    .catch(this.handleError);
+}
+
+public signup(user: User) : Promise<any> {
+  let options = new RequestOptions({ headers: this.headers });
+  const url = this.__url;
+	//the url is url + /login to access the login page.
+  return this.http.post(url + '/signup', {"email":user.email, "username": user.username, "password":user.password, "firstName":user.firstName, "lastName":user.lastName})
     .toPromise()
     .then (
 			this.extractData.userid

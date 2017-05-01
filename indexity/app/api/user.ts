@@ -1,10 +1,7 @@
 export class User {
 
-    //constructor (    
+
     //id: number
-    //userName: string
-    //password: string
-    //) { }
     /*firstName: string;
     lastName: string;
     job: string;
@@ -14,6 +11,10 @@ export class User {
 
     constructor(
     public username: string,
-    public password: string
+    public password: string,
+    public email: string,
+    public firstName: string,
+    public lastName: string,
+    public age: number
   ) {  }
 }
