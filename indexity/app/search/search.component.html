@@ -5,17 +5,17 @@
   <form #f="ngForm" novalidate>
     <div>
     <label>Origin City</label>
-    <select name="role" [(ngModel)]="user.role">
-        <option *ngFor="let role of roles" [value]="role.value">
-        {{role.display}}
+    <select name="city1" [(ngModel)]="user.city1">
+        <option *ngFor="let city of cities" [value]="city.value">
+        {{city.display}}
         </option>
     </select>
 
 <form #f="ngForm" novalidate>
   <div>
   <label>Destination City</label>
-  <select name="city" [(ngModel)]="user.city">
-      <option *ngFor="let city of citys" [value]="city.value">
+  <select name="city2" [(ngModel)]="user.city2">
+      <option *ngFor="let city of cities" [value]="city.value">
       {{city.display}}
       </option>
   </select>

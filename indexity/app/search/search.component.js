@@ -11,11 +11,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
 let SearchComponent = class SearchComponent {
-    constructor() { }
+    constructor() {
+        this.cities = [
+            { value: 'austin', display: 'Austin' },
+            { value: 'baltimore', display: 'Baltimore' },
+            { value: 'boston', display: 'Boston' },
+            { value: 'columbus', display: 'Columbus' },
+            { value: 'dallas', display: 'Dallas' },
+            { value: 'denver', display: 'Denver' },
+            { value: 'detroit', display: 'Detroit' },
+            { value: 'honolulu', display: 'Honolulu' },
+            { value: 'houston', display: 'Houston' },
+            { value: 'lasvegas', display: 'Las Vegas' },
+            { value: 'losangeles', display: 'Los Angeles' },
+            { value: 'memphis', display: 'Memphis' },
+            { value: 'newyork', display: 'New York' },
+            { value: 'orlando', display: 'Orlando' },
+            { value: 'philidelphia', display: 'Philidelphia' },
+            { value: 'pittsburgh', display: 'Pittsburgh' },
+            { value: 'sanantonio', display: 'San Antonio' },
+            { value: 'sandiego', display: 'San Diego' },
+            { value: 'sanfransisco', display: 'San Fransisco' },
+            { value: 'seattle', display: 'Seattle' },
+            { value: 'stlouis', display: 'St. Louis' },
+            { value: 'dc', display: 'D.C.' },
+        ];
+    }
     ngOnInit() {
-        this.User = {
+        this.user = {
             city: null,
         };
+    }
+    save(isValid, f) {
+        console.log(f);
     }
 };
 SearchComponent = __decorate([

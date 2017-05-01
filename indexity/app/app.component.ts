@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { User } from './api/user.interface';
+import { Theme } from './api/theme.interface';
 
 @Component ({
     selector: 'app',

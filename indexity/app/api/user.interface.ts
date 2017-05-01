@@ -1,3 +1,4 @@
 export interface User {
-   city?: string;
+   city1?: string;
+   city2?: string;
 }
