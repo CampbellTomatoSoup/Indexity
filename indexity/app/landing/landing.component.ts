@@ -29,7 +29,7 @@ export class LandingComponent {
     this.userService.login(theUser)
     .then (
       id  => {
-        this.theId = id._body;
+        this.theId = id;
         if (this.theId != '-1') { this.router.navigateByUrl('/search'); }
         else { this.errorMessage = 'error'; }
       })

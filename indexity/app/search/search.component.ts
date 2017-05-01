@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../api/user';
 
 @Component({
   selector: 'search',
@@ -9,7 +10,9 @@ export class SearchComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(){
+    this.User = {
+    city: null,
   }
-
+}
 }

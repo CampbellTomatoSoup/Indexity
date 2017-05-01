@@ -18,6 +18,7 @@ const create_account_component_1 = require("./create-account/create-account.comp
 const edit_account_component_1 = require("./edit-account/edit-account.component");
 const user_repository_1 = require("./api/user-repository");
 const search_component_1 = require("./search/search.component");
+const search_repository_1 = require("./api/search-repository");
 var routes = [
     {
         path: '',
@@ -49,8 +50,6 @@ AppModule = __decorate([
             forms_1.FormsModule,
             router_1.RouterModule.forRoot(routes),
             http_1.HttpModule,
-            http_1.JsonpModule
-            //InMemoryWebApiModule.forRoot(MockApiService)
         ],
         declarations: [
             app_component_1.AppComponent,
@@ -61,7 +60,8 @@ AppModule = __decorate([
             search_component_1.SearchComponent
         ],
         providers: [
-            user_repository_1.APIRepository
+            user_repository_1.APIRepository,
+            search_repository_1.SearchRepository
         ],
         bootstrap: [
             app_component_1.AppComponent

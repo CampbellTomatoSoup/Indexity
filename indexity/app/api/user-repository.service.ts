@@ -52,21 +52,4 @@ export class UserRepository {
 
 	public get(id : number) : User {
 		var index = this.getIndex(id);
-		return this._users[index];
-	}
-
-	public add(user: User) {
-		user.id = this._users.length + 1;
-		this._users.push(user);
-	}
-
-	public update(user: User) {
-		var index = this.getIndex(user.id);
-		this._users[index] = user;
-	}
-
-	public delete(id : number) {
-		var index = this.getIndex(id);
-		this._users.splice(index, 1);
-	}*/
-}
+  */}

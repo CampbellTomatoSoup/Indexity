@@ -10,21 +10,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
-let SearchComponent = class SearchComponent {
-    constructor() { }
-    ngOnInit() {
-        this.User = {
-            city: null,
-        };
+require("rxjs/add/operator/toPromise");
+const http_1 = require("@angular/http");
+require("rxjs/add/operator/toPromise");
+const http_2 = require("@angular/http");
+let SearchRepository = class SearchRepository {
+    constructor(http) {
+        this.http = http;
+        this.headers = new http_2.Headers({ 'Content-Type': 'application/json' });
+        this.__url = "http://54.213.29.40/api";
+    }
+    saveOrigin() {
+    }
+    saveDestination() {
+    }
+    saveSelections() {
+    }
+    handleError(error) {
+        console.error('An error occurred', error);
+        return Promise.reject(error.message || error);
     }
 };
-SearchComponent = __decorate([
-    core_1.Component({
-        selector: 'search',
-        templateUrl: './app/search/search.component.html',
-        styleUrls: ['./app/search/search.component.css']
-    }),
-    __metadata("design:paramtypes", [])
-], SearchComponent);
-exports.SearchComponent = SearchComponent;
-//# sourceMappingURL=search.component.js.map
+SearchRepository = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], SearchRepository);
+exports.SearchRepository = SearchRepository;
+//# sourceMappingURL=search-repository.js.map

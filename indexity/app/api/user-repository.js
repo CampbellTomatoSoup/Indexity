@@ -30,7 +30,7 @@ let APIRepository = class APIRepository {
         //the url is url + /login to access the login page.
         return this.http.post(url + '/login', { "username": user.username, "password": user.password })
             .toPromise()
-            .then(this.extractData.userid)
+            .then(this.extractData)
             .catch(this.handleError);
     }
     handleError(error) {

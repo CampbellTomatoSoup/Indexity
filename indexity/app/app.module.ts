@@ -5,13 +5,18 @@ import { AppComponent } from './app.component';
 import { RouterModule, Routes }   from '@angular/router';
 import { MockApiService } from './mock-api.service';
 import { FormsModule } from '@angular/forms';
-import { HttpModule, JsonpModule } from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { InMemoryWebApiModule, InMemoryDbService } from 'angular-in-memory-web-api';
 import { LandingComponent }   from './landing/landing.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { EditAccountComponent } from './edit-account/edit-account.component';
 import { APIRepository } from './api/user-repository';
 import { SearchComponent } from './search/search.component';
+import { Component, OnInit } from '@angular/core';
+import { SearchRepository } from './api/search-repository';
+import { User } from './api/user.interface';
+import { Theme } from './api/theme.interface';
+
 
 var routes = [
   {
@@ -33,7 +38,7 @@ var routes = [
   {
     path: 'search',
     component: SearchComponent
-  }
+  },
 ];
 
 @NgModule ({
@@ -42,7 +47,6 @@ var routes = [
         FormsModule,
         RouterModule.forRoot(routes),
         HttpModule,
-        JsonpModule
         //InMemoryWebApiModule.forRoot(MockApiService)
     ],
     declarations: [
@@ -54,7 +58,8 @@ var routes = [
         SearchComponent
     ],
     providers: [
-        APIRepository
+        APIRepository,
+        SearchRepository
     ],
     bootstrap: [
         AppComponent
@@ -62,5 +67,5 @@ var routes = [
 })
 
 export class AppModule {
-
-}
+      
+  }
