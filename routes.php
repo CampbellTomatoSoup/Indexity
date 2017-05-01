@@ -6,6 +6,7 @@ $app->get('/api', function ($request, $response, $args) {
     return $response;
 });
 
+// Go to Landing Page
 $app->get('/', function ($request, $response, $args) {
         return $response->withRedirect('/index.html');
 
@@ -46,6 +47,7 @@ $app->post('/api/signup', function ($request, $response) {
                 $setSession->bindParam("randString", $rand);
                 $setSession->bindParam("expired", $expd);
                 $setSession->execute();
+		$_SESSION['userId']=$userId;
 		return $response->withJson($rand);
         } else  {
 		$response->write(-1);
@@ -74,15 +76,15 @@ $app->post('/api/login', function ($request, $response) {
         	$login->execute();
 
 		require 'extra/session.php';
-		$userid = generateRandomString($userId);
+		$rand = generateRandomString($userId);
 		$expd = 'N';
 		$setSession = $this->db->prepare("UPDATE Sessions SET randString = :randString, expired = :expired WHERE userId = :userId");
 		$setSession->bindParam("userId", $userId);
-		$setSession->bindParam("randString", $userid);
+		$setSession->bindParam("randString", $rand);
 		$setSession->bindParam("expired", $expd);
 		$setSession->execute();
-		return $response->withJson($userid);
-		//$_SESSION['userId']=$userId;
+		return $response->withJson($rand);
+		$_SESSION['userId']=$userId;
 	} else {
         	$response->write(-1);
     		return $response;
@@ -92,31 +94,55 @@ $app->post('/api/login', function ($request, $response) {
 // Changing Password
 $app->post('/api/changepassword', function ($request, $response) {
 	$input = $request->getParsedBody();
-	if(!empty($_SESSION['userId'])) {
-                $sessionUserId = $_SESSION['userId'];
-                $hashedPw = password_hash($input['newPassword'], PASSWORD_BCRYPT);
-		$change = $this->db->prepare("UPDATE Accounts SET password=:hashedPw WHERE userId=:userId");
-		$change->bindParam("hashedPw", $hashedPw);
-		$change->bindParam("userId", $sessionUserId);
-		$change->execute();
-		return $response;
-        }
-        if(empty($_SESSION['userId'])) {
-                echo "Sorry, please sign in or register first";
-        }
+	$user = $this->db->prepare("SELECT userId FROM Sessions WHERE randString=:randString");
+        $user->bindParam("randString", $input['userId']);
+        $user->execute();
+        $user = $user->fetch(PDO::FETCH_OBJ)->userId;
+        intval($user);
+        $hashedPw = password_hash($input['newPassword'], PASSWORD_BCRYPT);
+	$change = $this->db->prepare("UPDATE Accounts SET password=:hashedPw WHERE userId=:userId");
+	$change->bindParam("hashedPw", $hashedPw);
+	$change->bindParam("userId", $user);
+	$change->execute();
+	return $response->withJson($input['userId']);
 });
-/*
-// Logging out
-$app->put('api/user/[{userid}]/logout', function ($request, $response, $args) {
-	$input = $request->getParsedBody();
-	$expd = 'Y';
-	$logout = $this->db->prepare("UPDATE Sessions SET expired=:expd WHERE randString=:userid");
-	$logout->bindParam("userid", $args['userid']);
-	$logout->bindParam("expd", $expd);
-});
-*/
 
-// Comparing Cities
+// Logout
+$app->post('/api/logout', function ($request, $response) {
+	$input = $request->getParsedBody();
+	$expd = "Y";
+	$logout = $this->db->prepare("UPDATE Sessions SET expired=:expd WHERE randString=:userid");
+	$logout->bindParam("userid", $input['userid']);
+	$logout->bindParam("expd", $expd);
+	$logout->execute();
+	session_unset();
+	echo "Logged out: Session expired";
+});
+
+// Edit Account
+$app->post('/api/edit', function ($request, $response) {
+        $input = $request->getParsedBody();
+	$user = $this->db->prepare("SELECT userId FROM Sessions WHERE randString=:randString");
+	$user->bindParam("randString", $input['userId']);
+	$user->execute();
+	$user = $user->fetch(PDO::FETCH_OBJ)->userId;
+	intval($user);
+	$fields = array("firstName", "lastName", "lastCity", "currJob", "currSalary");
+	$query = "";
+	foreach($fields as $f) {
+		if(isset($input[$f]))
+			$query = $query . $f . "='" . $input[$f] . "', ";
+	}
+	$query = trim($query, ", ");
+	$query = "UPDATE Users SET ".$query." WHERE userId=:user";
+//	echo $query;
+        $update = $this->db->prepare($query);
+	$update->bindParam("user", $user);
+	$update->execute();
+	return $response->withJson($input['userId']);
+});
+
+// NOTUSING-Comparing Cities
 $app->post('/compare', function ($request, $response) {
         $input = $request->getParsedBody();
         $query = "";
@@ -140,7 +166,7 @@ $app->post('/compare', function ($request, $response) {
 });
 
 
-// get all cities
+// Get All Cities
 $app->get('/api/cities', function ($request, $response, $args) {
     $sth = $this->db->prepare("SELECT name FROM Cities");
     $sth->execute();
@@ -148,31 +174,17 @@ $app->get('/api/cities', function ($request, $response, $args) {
 	return $response->withJson($cities);
 });
 
+// Top 10 All Cities
 $app->get('/top10', function ($request, $response) {
+        $stmt1 = $this->db->query("SELECT name FROM Cities ORDER BY publicTrans LIMIT 10");
+        $stmt2 = $this->db->query("SELECT name FROM Cities ORDER BY housing LIMIT 10");
+        $stmt3 = $this->db->query("SELECT name FROM Cities ORDER BY utilities LIMIT 10");
+        $stmt4 = $this->db->query("SELECT name FROM Cities ORDER BY salesTax LIMIT 10");
+        $stmt5 = $this->db->query("SELECT name FROM Cities ORDER BY incomeTax LIMIT 10");
+        $stmt6 = $this->db->query("SELECT name FROM Cities ORDER BY groceries LIMIT 10");
+	$stmt7 = $this->db->query("SELECT name FROM Cities ORDER BY healthcare LIMIT 10");
 
-       $stmt1 = $this->db->query("SELECT name FROM Cities ORDER BY publicTrans LIMIT 10");
-       $stmt2 = $this->db->query("SELECT name FROM Cities ORDER BY housing LIMIT 10");
-       $stmt3 = $this->db->query("SELECT name FROM Cities ORDER BY utilities LIMIT 10");
-       $stmt4 = $this->db->query("SELECT name FROM Cities ORDER BY salesTax LIMIT 10");
-       $stmt5 = $this->db->query("SELECT name FROM Cities ORDER BY incomeTax LIMIT 10");
-       $stmt6 = $this->db->query("SELECT name FROM Cities ORDER BY groceries LIMIT 10");
-       $stmt7 = $this->db->query("SELECT name FROM Cities ORDER BY healthcare LIMIT 10");
-        // $stmt1->execute();
-        // $stmt2->execute();
-        // $stmt3->execute();
-        // $stmt4->execute();
-        // $stmt5->execute();
-        // $stmt6->execute();
-        // $stmt7->execute();
-        // $sendstatement1 =  $stmt1->fetchAll(PDO::FETCH_OBJ);
-        // $sendstatement2 =  $stmt2->fetchAll(PDO::FETCH_OBJ);
-        // $sendstatement3 =  $stmt3->fetchAll(PDO::FETCH_OBJ);
-        // $sendstatement4 =  $stmt4->fetchAll(PDO::FETCH_OBJ);
-        // $sendstatement5 =  $stmt5->fetchAll(PDO::FETCH_OBJ);
-        // $sendstatement6 =  $stmt6->fetchAll(PDO::FETCH_OBJ);
-        // $sendstatement7 =  $stmt7->fetchAll(PDO::FETCH_OBJ);
-
-  echo '{"publicTrans": ' . json_encode($stmt1->fetchAll()) . ',"housing": ' . json_encode($stmt2->fetchAll()) . ',"utilities": ' . json_encode($stmt3->fetchAll()) . ',"salesTax": ' . json_encode($stmt4->fetchAll()) . ',"incomeTax": ' . json_encode($stmt5->fetchAll()) . ',"groceries":' . json_encode($stmt6->fetchAll()) .
+	echo '{"publicTrans": ' . json_encode($stmt1->fetchAll()) . ',"housing": ' . json_encode($stmt2->fetchAll()) . ',"utilities": ' . json_encode($stmt3->fetchAll()) . ',"salesTax": ' . json_encode($stmt4->fetchAll()) . ',"incomeTax": ' . json_encode($stmt5->fetchAll()) . ',"groceries":' . json_encode($stmt6->fetchAll()) .
      ',"healthcare": ' . json_encode($stmt7->fetchAll()) . '}';
 
 });
