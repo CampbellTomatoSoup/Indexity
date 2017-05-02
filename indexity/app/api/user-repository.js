@@ -13,11 +13,10 @@ const core_1 = require("@angular/core");
 require("rxjs/add/operator/toPromise");
 const http_1 = require("@angular/http");
 require("rxjs/add/operator/map");
-const http_2 = require("@angular/http");
 let APIRepository = class APIRepository {
     constructor(http) {
         this.http = http;
-        this.headers = new http_2.Headers({ 'Content-Type': 'application/json' });
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         this.__url = "http://54.213.29.40/api";
     }
     extractData(res) {
@@ -25,7 +24,7 @@ let APIRepository = class APIRepository {
         return body.data || {};
     }
     login(user) {
-        let options = new http_2.RequestOptions({ headers: this.headers });
+        let options = new http_1.RequestOptions({ headers: this.headers });
         const url = this.__url;
         //the url is url + /login to access the login page.
         return this.http.post(url + '/login', { "username": user.username, "password": user.password })
@@ -34,10 +33,19 @@ let APIRepository = class APIRepository {
             .catch(this.handleError);
     }
     signup(user) {
-        let options = new http_2.RequestOptions({ headers: this.headers });
+        let options = new http_1.RequestOptions({ headers: this.headers });
         const url = this.__url;
         //the url is url + /login to access the login page.
         return this.http.post(url + '/signup', { "email": user.email, "username": user.username, "password": user.password, "firstName": user.firstName, "lastName": user.lastName })
+            .toPromise()
+            .then(this.extractData.userid)
+            .catch(this.handleError);
+    }
+    changePassword(theId, user) {
+        let options = new http_1.RequestOptions({ headers: this.headers });
+        const url = this.__url;
+        //the url is url + /login to access the login page.
+        return this.http.post(url + '/changepassword', { "userId": theId, "password": user.password })
             .toPromise()
             .then(this.extractData.userid)
             .catch(this.handleError);

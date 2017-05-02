@@ -19,20 +19,27 @@ let CreateAccountComponent = class CreateAccountComponent {
         this.router = router;
         this.errorMessage = null;
         this.mode = 'Promise';
-        this.usr = new user_1.User('', '');
+        this.usr = new user_1.User('', '', '', '', '', '');
         this.submitted = false;
     }
     signup(theUser) {
-        console.log(theUser);
         if (!theUser) {
             return;
         }
         this.userService.signup(theUser)
             .then(id => {
-            this.theId = id;
-            console.log(this.theId);
-            //if (this.theId != '-1') { this.router.navigateByUrl('/search'); }
-            //else { this.errorMessage = 'error'; }
+            this.theId = id._body;
+            this.usr.userId = this.theId;
+            this.myStorage.setItem('userId', this.theId);
+            this.myStorage.setItem('user', this.usr);
+            console.log("RESPONSE: " + this.theId);
+            console.log("STORAGE: " + this.myStorage['userId']);
+            if (this.theId != '-1') {
+                this.router.navigateByUrl('/search');
+            }
+            else {
+                this.errorMessage = 'error';
+            }
         })
             .catch(err => {
             this.errorMessage = err;

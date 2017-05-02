@@ -9,23 +9,23 @@
                     <form>
                         <div class="form-group">
                             <label for="firstname">First Name</label>
-                            <input type="text" class="form-control" id="firstname" placeholder="First Name">
+                            <input type="text" class="form-control" id="firstname">
                         </div>
                         <div class="form-group">
                             <label for="lastname">Last Name</label>
-                            <input type="text" class="form-control" id="lastname" placeholder="Last Name">
+                            <input type="text" class="form-control" id="lastname">
                         </div>
                         <div class="form-group">
                             <label for="usr">Username</label>
-                            <input type="text" class="form-control" id="usr" placeholder="Username">
+                            <input type="text" class="form-control" id="usr" name="usr">
                         </div>
                         <div class="form-group">
                             <label for="occupation">Occupation</label>
-                            <input type="text" class="form-control" id="occupation" placeholder="Occupation">
+                            <input type="text" class="form-control" id="occupation">
                         </div>
                         <div class="form-group">
                             <label for="salary">Salary</label>
-                            <input type="text" class="form-control" id="salary" placeholder="Salary">
+                            <input type="text" class="form-control" id="salary">
                         </div>
                     </form>
                 </div>
@@ -36,19 +36,22 @@
             <h4>Change Password</h4>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form>
+                    <form #passwordForm="ngForm" (ngSubmit)="onSubmit()">
                         <div class="form-group">
-                            <label for="firstname">Old Password</label>
-                            <input type="text" class="form-control" id="firstname" placeholder="Old Password">
+                            <label for="oldpass">Old Password</label>
+                            <input type="text" class="form-control" id="oldpass" [(ngModel)]="oldPass" name="oldpass">
                         </div>
                         <div class="form-group">
-                            <label for="pwd">New Password</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="New Password">
+                            <label for="newpass">New Password</label>
+                            <input type="password" class="form-control" id="newpass" [(ngModel)]="usr.password" name="newpass">
                         </div>
                     </form>
                 </div>
             </div>
-            <button type="button" class="btn btn-primary btn-block">Save</button>
+            <button type="submit" class="btn btn-primary btn-block" (click)="changePassword(usr)">Save</button>
+            <div class="help-block" *ngIf="pwMessage">
+              Your password has been changed successfully!
+            </div>
         </div>
     </div>
 </div>

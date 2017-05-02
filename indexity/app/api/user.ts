@@ -1,20 +1,17 @@
 export class User {
-
-
-    //id: number
-    /*firstName: string;
-    lastName: string;
+    /*
+    id: number
     job: string;
     salary: number;
-    password: string;
-    saved: { city: string, dateSaved: string }[];*/
+    saved: { city: string, dateSaved: string }[];
+    */
 
     constructor(
+    public userId: string,
     public username: string,
     public password: string,
     public email: string,
     public firstName: string,
-    public lastName: string,
-    public age: number
+    public lastName: string
   ) {  }
 }

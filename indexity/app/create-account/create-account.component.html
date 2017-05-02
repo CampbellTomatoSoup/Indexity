@@ -10,31 +10,53 @@
                         <div class="row">
                             <div class="form-group col-xs-6">
                               <label for="firstName">First Name</label>
-                              <input type="text" class="form-control" id="firstName" [(ngModel)]="usr.firstName" name="firstName">
+                              <input type="text" class="form-control" id="firstName" [(ngModel)]="usr.firstName" name="firstName" #firstName="ngModel" required/>
+                              <div *ngIf="firstName.errors && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+                                  <div [hidden]="!firstName.errors.required">
+                                    First name is required
+                                  </div>
+                              </div>
                             </div>
                             <div class="form-group col-xs-6">
                               <label for="lastName">Last Name</label>
-                              <input type="text" class="form-control" id="lastName" [(ngModel)]="usr.lastName" name="lastName">
+                              <input type="text" class="form-control" id="lastName" [(ngModel)]="usr.lastName" name="lastName" #lastName="ngModel" required/>
+                              <div *ngIf="lastName.errors && (lastName.dirty || lastName.touched)" class="alert alert-danger">
+                                  <div [hidden]="!lastName.errors.required">
+                                    Last name is required
+                                  </div>
+                              </div>
                             </div>
-                            <!--div class="form-group col-xs-2">
-                              <label for="age">Age</label>
-                              <input type="text" class="form-control" id="age" [(ngModel)]="usr.age" name="age">
-                            </div-->
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" id="email" [(ngModel)]="usr.email" name="email">
+                            <input type="text" class="form-control" id="email" [(ngModel)]="usr.email" name="email" #email="ngModel" required/>
+                            <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+                                <div [hidden]="!email.errors.required">
+                                  Email is required
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="usr">Username</label>
-                            <input type="text" class="form-control" id="usr" [(ngModel)]="usr.username" name="usr">
+                            <input type="text" class="form-control" id="usr" [(ngModel)]="usr.username" name="usr" #name="ngModel" required/>
+                            <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger">
+                                <div [hidden]="!name.errors.required">
+                                  Username is required
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="pwd">Password</label>
-                            <input type="password" class="form-control" id="pwd" [(ngModel)]="usr.password" name="pwd">
+                            <input type="password" class="form-control" id="pwd" [(ngModel)]="usr.password" name="pwd" #pwd="ngModel" required>
+                            <div *ngIf="pwd.errors && (pwd.dirty || pwd.touched)" class="alert alert-danger">
+                                <div [hidden]="!pwd.errors.required">
+                                  Password is required
+                                </div>
+                            </div>
                         </div>
                     </form>
-                    <button type="submit" class="btn btn-primary btn-block" (click)="signup(usr)">Sign Up</button>
+                    <div class="help-block" *ngIf="errorMessage">The username or email you entered already exists.</div>
+                    <button [disabled]="!signupForm.form.valid" type="submit" class="btn btn-primary btn-block" (click)="signup(usr)">Sign Up</button>
                 </div>
             </div>
         </div>
