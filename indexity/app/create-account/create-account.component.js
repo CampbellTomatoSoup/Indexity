@@ -18,7 +18,7 @@ let CreateAccountComponent = class CreateAccountComponent {
         this.userService = userService;
         this.router = router;
         this.errorMessage = null;
-        this.usr = new user_1.User('', '', '', '', '', '');
+        this.usr = new user_1.User('', '', '', '', '', '', '', '', '');
         this.myStorage = localStorage;
         this.submitted = false;
     }

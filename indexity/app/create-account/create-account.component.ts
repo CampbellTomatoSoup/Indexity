@@ -16,7 +16,7 @@ export class CreateAccountComponent {
 
   errorMessage: null | string = null;
   theId: string;
-  usr =  new User('','','','','','');
+  usr =  new User('','','','','','','','','');
   myStorage = localStorage;
 
   constructor (private userService: APIRepository, private router: Router) { }

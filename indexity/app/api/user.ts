@@ -12,6 +12,9 @@ export class User {
     public password: string,
     public email: string,
     public firstName: string,
-    public lastName: string
+    public lastName: string,
+    public lastCity: string,
+    public currJob: string,
+    public currSalary: int
   ) {  }
 }

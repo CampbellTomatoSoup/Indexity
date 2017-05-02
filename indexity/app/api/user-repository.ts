@@ -36,30 +36,27 @@ public signup(user: User) : Promise<any> {
 	//the url is url + /login to access the login page.
   return this.http.post(url + '/signup', {"email":user.email, "username": user.username, "password":user.password, "firstName":user.firstName, "lastName":user.lastName})
     .toPromise()
-    .then (
-			this.extractData.userid
-		)
+    .then ( this.extractData.userid )
     .catch(this.handleError);
 }
 
-public changePassword(theId: string, user: User) : Promise<any> {
+public changePassword(theId: string, oldpass: string, user: User) : Promise<any> {
   let options = new RequestOptions({ headers: this.headers });
   const url = this.__url;
-	//the url is url + /login to access the login page.
-  return this.http.post(url + '/changepassword', {"userId": theId, "password":user.password})
-	/*.map((response: Response) => {
-							// login successful if there's a jwt token in the response
-							let user = response.json();
-							if (user && user.token) {
-									// store user details and jwt token in local storage to keep user logged in between page refreshes
-									localStorage.setItem('currentUser', JSON.stringify(user));
-							}
-					});*/
+  return this.http.post(url + '/changepassword', {"userId": theId, "oldPassword": oldpass, "newPassword":user.password})
 		.toPromise()
-    .then (
-			this.extractData.userid
-		)
+    .then ( this.extractData.userid )
     .catch(this.handleError);
+}
+
+public editAccount(theId: string, user: User) : Promise<any> {
+  let options = new RequestOptions({ headers: this.headers });
+  const url = this.__url;
+  return this.http.post(url + '/edit', {"firstName":user.firstName, "lastName":user.lastName, "lastCity":user.lastCity, "currJob":user.currJob, "currSalary":user.currSalary, "userId":theId, "password":user.password})
+		.toPromise()
+    .then ( this.extractData.userid )
+    .catch ( this.handleError );
+	// error if username or email
 }
 
 private handleError(error: any): Promise<any> {

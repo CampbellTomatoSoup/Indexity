@@ -41,14 +41,22 @@ let APIRepository = class APIRepository {
             .then(this.extractData.userid)
             .catch(this.handleError);
     }
-    changePassword(theId, user) {
+    changePassword(theId, oldpass, user) {
         let options = new http_1.RequestOptions({ headers: this.headers });
         const url = this.__url;
-        //the url is url + /login to access the login page.
-        return this.http.post(url + '/changepassword', { "userId": theId, "password": user.password })
+        return this.http.post(url + '/changepassword', { "userId": theId, "oldPassword": oldpass, "newPassword": user.password })
             .toPromise()
             .then(this.extractData.userid)
             .catch(this.handleError);
+    }
+    editAccount(theId, user) {
+        let options = new http_1.RequestOptions({ headers: this.headers });
+        const url = this.__url;
+        return this.http.post(url + '/edit', { "firstName": user.firstName, "lastName": user.lastName, "lastCity": user.lastCity, "currJob": user.currJob, "currSalary": user.currSalary, "userId": theId, "password": user.password })
+            .toPromise()
+            .then(this.extractData.userid)
+            .catch(this.handleError);
+        // error if username or email
     }
     handleError(error) {
         console.error('An error occurred', error);

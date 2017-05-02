@@ -7,13 +7,16 @@ class User {
     salary: number;
     saved: { city: string, dateSaved: string }[];
     */
-    constructor(userId, username, password, email, firstName, lastName) {
+    constructor(userId, username, password, email, firstName, lastName, lastCity, currJob, currSalary) {
         this.userId = userId;
         this.username = username;
         this.password = password;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.lastCity = lastCity;
+        this.currJob = currJob;
+        this.currSalary = currSalary;
     }
 }
 exports.User = User;
