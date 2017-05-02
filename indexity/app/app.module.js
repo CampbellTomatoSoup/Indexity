@@ -18,6 +18,7 @@ const create_account_component_1 = require("./create-account/create-account.comp
 const edit_account_component_1 = require("./edit-account/edit-account.component");
 const user_repository_1 = require("./api/user-repository");
 const search_component_1 = require("./search/search.component");
+const compare_component_1 = require("./compare/compare.component");
 const search_repository_1 = require("./api/search-repository");
 var routes = [
     {
@@ -40,6 +41,10 @@ var routes = [
         path: 'search',
         component: search_component_1.SearchComponent
     },
+    {
+        path: 'compare',
+        component: compare_component_1.CompareComponent
+    }
 ];
 let AppModule = class AppModule {
 };
@@ -57,7 +62,8 @@ AppModule = __decorate([
             create_account_component_1.CreateAccountComponent,
             edit_account_component_1.EditAccountComponent,
             resources_component_1.ResourcesComponent,
-            search_component_1.SearchComponent
+            search_component_1.SearchComponent,
+            compare_component_1.CompareComponent
         ],
         providers: [
             user_repository_1.APIRepository,

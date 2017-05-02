@@ -12,6 +12,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { EditAccountComponent } from './edit-account/edit-account.component';
 import { APIRepository } from './api/user-repository';
 import { SearchComponent } from './search/search.component';
+import { CompareComponent } from './compare/compare.component';
 import { Component, OnInit } from '@angular/core';
 import { SearchRepository } from './api/search-repository';
 import { User } from './api/user.interface';
@@ -39,6 +40,10 @@ var routes = [
     path: 'search',
     component: SearchComponent
   },
+  {
+    path: 'compare',
+    component: CompareComponent
+  }
 ];
 
 @NgModule ({
@@ -55,7 +60,8 @@ var routes = [
         CreateAccountComponent,
         EditAccountComponent,
         ResourcesComponent,
-        SearchComponent
+        SearchComponent,
+        CompareComponent
     ],
     providers: [
         APIRepository,
@@ -67,5 +73,5 @@ var routes = [
 })
 
 export class AppModule {
-      
+
   }
