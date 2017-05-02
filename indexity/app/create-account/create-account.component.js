@@ -18,8 +18,8 @@ let CreateAccountComponent = class CreateAccountComponent {
         this.userService = userService;
         this.router = router;
         this.errorMessage = null;
-        this.mode = 'Promise';
         this.usr = new user_1.User('', '', '', '', '', '');
+        this.myStorage = localStorage;
         this.submitted = false;
     }
     signup(theUser) {
@@ -32,22 +32,16 @@ let CreateAccountComponent = class CreateAccountComponent {
             this.usr.userId = this.theId;
             this.myStorage.setItem('userId', this.theId);
             this.myStorage.setItem('user', this.usr);
-            console.log("RESPONSE: " + this.theId);
-            console.log("STORAGE: " + this.myStorage['userId']);
-            if (this.theId != '-1') {
+            if (this.theId !== '-1') {
                 this.router.navigateByUrl('/search');
             }
             else {
                 this.errorMessage = 'error';
             }
         })
-            .catch(err => {
-            this.errorMessage = err;
-        });
+            .catch(err => { this.errorMessage = err; });
     }
-    onSubmit() {
-        this.submitted = true;
-    }
+    onSubmit() { this.submitted = true; }
 };
 CreateAccountComponent = __decorate([
     core_1.Component({

@@ -15,11 +15,11 @@ import { Location } from '@angular/common';
 export class CreateAccountComponent {
 
   errorMessage: null | string = null;
-  mode = 'Promise';
   theId: string;
   usr =  new User('','','','','','');
+  myStorage = localStorage;
 
-  constructor (private userService: APIRepository, private router: Router) {}
+  constructor (private userService: APIRepository, private router: Router) { }
 
   signup (theUser: User) {
     if (!theUser) { return; }
@@ -30,21 +30,16 @@ export class CreateAccountComponent {
         this.usr.userId = this.theId;
         this.myStorage.setItem('userId', this.theId);
         this.myStorage.setItem('user', this.usr);
-        console.log("RESPONSE: " + this.theId);
-        console.log("STORAGE: " + this.myStorage['userId']);
-        if (this.theId != '-1') { this.router.navigateByUrl('/search'); }
-        else { this.errorMessage = 'error'; }
+        if (this.theId !== '-1') {
+          this.router.navigateByUrl('/search');
+        } else {
+          this.errorMessage = 'error';
+        }
       })
-    .catch(
-      err => {
-        this.errorMessage = err;
-      }
-    );
+    .catch ( err => { this.errorMessage = err; } );
   }
 
   submitted = false;
-  onSubmit() {
-    this.submitted = true;
-  }
+  onSubmit() { this.submitted = true; }
 
 }
