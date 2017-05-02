@@ -39,7 +39,8 @@ let SearchComponent = class SearchComponent {
     }
     ngOnInit() {
         this.user = {
-            city: null,
+            city1: null,
+            city2: null
         };
     }
     save(isValid, f) {

@@ -39,7 +39,8 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(){
     this.user = {
-    city: null,
+    city1: null,
+    city2: null
   }
 }
 
