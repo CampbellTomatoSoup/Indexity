@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../api/user.interface';
 import { Theme } from '../api/theme.interface';
+import { Router } from '@angular/router';
+import { SearchRepository } from '../api/search-repository';
 
 @Component({
   selector: 'search',
@@ -8,7 +10,7 @@ import { Theme } from '../api/theme.interface';
   styleUrls: ['./app/search/search.component.css']
 })
 export class SearchComponent implements OnInit {
-  constructor() { }
+  constructor(private userService: SearchRepository, private router: Router) { }
 
   public user: User;
 
@@ -52,8 +54,39 @@ export class SearchComponent implements OnInit {
     city1: null,
     city2: null
   }
+}/*
+errorMessage: null | string = null;
+mode = 'Promise';
+theId: string;
+usr =  new User('','');
+location: Location;
+
+login(theUser: User) {
+  console.log(theUser);
+  if (!theUser) { return; }
+  this.userService.login(theUser)
+  .then (
+    id  => {
+      this.theId = id;
+      if (this.theId != '-1') { this.router.navigateByUrl('/compare'); }
+      else { this.errorMessage = 'error'; }
+    })
+  .catch(
+    err => {
+      this.errorMessage = err;
+    }
+  );
 }
 
+goBack(): void {
+  this.location.back();
+}
+
+submitted = false;
+onSubmit() {
+  this.submitted = true;
+}
+*/
 public save(isValid: boolean, f: User) {
         console.log(f);
     }

@@ -10,8 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
+const router_1 = require("@angular/router");
+const search_repository_1 = require("../api/search-repository");
 let SearchComponent = class SearchComponent {
-    constructor() {
+    constructor(userService, router) {
+        this.userService = userService;
+        this.router = router;
         //a list of the cities
         this.cities = [
             { value: 'austin', display: 'Austin' },
@@ -43,7 +47,39 @@ let SearchComponent = class SearchComponent {
             city1: null,
             city2: null
         };
+    } /*
+    errorMessage: null | string = null;
+    mode = 'Promise';
+    theId: string;
+    usr =  new User('','');
+    location: Location;
+    
+    login(theUser: User) {
+      console.log(theUser);
+      if (!theUser) { return; }
+      this.userService.login(theUser)
+      .then (
+        id  => {
+          this.theId = id;
+          if (this.theId != '-1') { this.router.navigateByUrl('/compare'); }
+          else { this.errorMessage = 'error'; }
+        })
+      .catch(
+        err => {
+          this.errorMessage = err;
+        }
+      );
     }
+    
+    goBack(): void {
+      this.location.back();
+    }
+    
+    submitted = false;
+    onSubmit() {
+      this.submitted = true;
+    }
+    */
     save(isValid, f) {
         console.log(f);
     }
@@ -54,7 +90,7 @@ SearchComponent = __decorate([
         templateUrl: './app/search/search.component.html',
         styleUrls: ['./app/search/search.component.css']
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [search_repository_1.SearchRepository, router_1.Router])
 ], SearchComponent);
 exports.SearchComponent = SearchComponent;
 //# sourceMappingURL=search.component.js.map
