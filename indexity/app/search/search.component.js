@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
 let SearchComponent = class SearchComponent {
     constructor() {
+        //a list of the cities
         this.cities = [
             { value: 'austin', display: 'Austin' },
             { value: 'baltimore', display: 'Baltimore' },

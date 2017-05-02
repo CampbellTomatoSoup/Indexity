@@ -12,6 +12,16 @@ export class SearchComponent implements OnInit {
 
   public user: User;
 
+//selected costs
+  publicTrans: false;
+  housing: false;
+  utilities: false;
+  groceries: false;
+  healthcare: false;
+  incomeTax: false;
+  salesTax: false;
+
+//a list of the cities
   public cities = [
     { value: 'austin', display: 'Austin' },
     { value: 'baltimore', display: 'Baltimore' },

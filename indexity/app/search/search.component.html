@@ -21,44 +21,48 @@
   </select>
 
   <h2> Pick your pieces. </h2>
-  <form>
+  <form #f="ngForm" novalidate>
+    <div>
+          <input type="checkbox" name="publicTrans"  [(ngModel)]="user.publicTrans">
+          <label> Public Transportation </label>
+  </div>
+  <div>
     <label>
-    <input type="checkbox">
-    <span class="label-text">Public Transportation </span>
-  </label>
+        <input type="checkbox" name="housing"  [(ngModel)]="user.housing">
+        Housing
+    </label>
+</div>
+<div>
+    <label>
+        <input type="checkbox" name="utilities"  [(ngModel)]="user.utilities">
+        Utilities
+    </label>
+</div>
+<div>
+    <label>
+        <input type="checkbox" name="groceries"  [(ngModel)]="user.groceries">
+        Groceries
+    </label>
+</div>
+<div>
+    <label>
+        <input type="checkbox" name="healthcare"  [(ngModel)]="user.healthcare">
+        Healthcare
+    </label>
+</div>
+<div>
+    <label>
+        <input type="checkbox" name="incomeTax"  [(ngModel)]="user.incomeTax">
+        Income Tax
+    </label>
+</div>
+<div>
+    <label>
+        <input type="checkbox" name="salesTax"  [(ngModel)]="user.salesTax">
+        Sales Tax
+    </label>
+</div>
+  </form>
 
-  <label>
-    <input type="checkbox">
-    <span class="label-text">Housing </span>
-  </label>
-
-  <label>
-    <input type="checkbox">
-    <span class="label-text">Utilities </span>
-  </label>
-<br>
-
-  <label>
-  <input type="checkbox">
-  <span class="label-text">Groceries </span>
-</label>
-
-<label>
-  <input type="checkbox">
-  <span class="label-text">Healthcare </span>
-</label>
-
-<label>
-  <input type="checkbox">
-  <span class="label-text">Income Tax </span>
-</label>
-
-<br>
-
-  <label>
-  <input type="checkbox">
-  <span class="label-text">Sales Tax </span>
-</label>
-</form>
 
 <a routerLink="/compare"><button type="submit"(click)="save(f.value, f.valid)"> Let's look! </button></a>
