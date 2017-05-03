@@ -25,7 +25,7 @@ class EditAccountComponent {
         this.failpwMessage = null;
         this.errorMessage = null;
         this.mode = 'Promise';
-        this.usr = new user_1.User('', '', '', '', '', '', '', '', '');
+        this.usr = new user_1.User('', '', '', '', '', '', '', '', 0);
         this.myStorage = localStorage;
         this.submitted = false;
         //this.token = currentUser && currentUser.token;

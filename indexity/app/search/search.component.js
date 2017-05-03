@@ -13,6 +13,7 @@ const core_1 = require("@angular/core");
 //import { User } from '../api/user.interface';
 //import { Theme } from '../api/theme.interface';
 const user_1 = require("../api/user");
+const selection_1 = require("../api/selection");
 const user_repository_1 = require("../api/user-repository");
 const router_1 = require("@angular/router");
 let SearchComponent = class SearchComponent {
@@ -20,9 +21,19 @@ let SearchComponent = class SearchComponent {
         this.userService = userService;
         this.router = router;
         this.errorMessage = null;
-        this.usr = new user_1.User('', '', '', '', '', '', '', '', '');
+        this.usr = new user_1.User('', '', '', '', '', '', '', '', 0);
+        this.selec = new selection_1.Selection(false, false, false, false, false, false, false);
         this.myStorage = localStorage;
         this.submitted = false;
+        //selected costs
+        /*
+          publicTrans: boolean = false;
+          housing: boolean = false;
+          utilities: boolean = false;
+          groceries: boolean = false;
+          healthcare: boolean = false;
+          incomeTax: boolean = false;
+          salesTax: boolean = false;*/
         //a list of the cities
         this.cities = [
             { value: 'austin', display: 'Austin' },
@@ -52,37 +63,35 @@ let SearchComponent = class SearchComponent {
     onSubmit() {
         this.submitted = true;
     }
-    /*login(theUser: User) {
-      if (!theUser) { return; }
-      this.userService.login(theUser)
-      .then (
-        id  => {
-          this.theId = id._body;
-          console.log("RESPONSE: " + this.theId);
-          this.usr.userId = this.theId;
-          this.myStorage.setItem('userId', this.theId);
-          console.log("STORAGE: " + this.myStorage['userId']);
-          this.myStorage.setItem('user', this.usr);
-          //this.myStorage.setItem('currentUser', JSON.stringify (this.usr));
-          if (this.theId != '-1') {
-            this.router.navigateByUrl('/search');
-          }
-          else { this.errorMessage = 'error'; }
+    saveSelections(id, theOrigin, theDest) {
+        this.userService.saveSelections(id, theOrigin, theDest)
+            .then(id => {
+            this.theId = id._body;
+            console.log("ID_FROM_RESPONSE" + this.theId);
+            /*if () {
+              this.router.navigateByUrl('/resources');
+            } else {
+              this.errorMessage = 'error';
+            }*/
         })
-      .catch(
-        err => {
-          this.errorMessage = err;
-        }
-      );
-    }*/
+            .catch(err => { this.errorMessage = err; });
+    }
     ngOnInit() {
         this.user = {
             city1: null,
             city2: null
         };
     }
-    save(isValid, f) {
-        console.log(f);
+    save() {
+        console.log("ORIGIN: " + this.origin);
+        console.log("DEST: " + this.dest);
+        console.log("PUBTRANS: " + this.selec.publicTrans);
+        console.log("HOUSING: " + this.selec.housing);
+        console.log("UTILS: " + this.selec.utilities);
+        console.log("GROCERIES: " + this.selec.groceries);
+        console.log("HEALTH: " + this.selec.healthcare);
+        console.log("INCOME: " + this.selec.incomeTax);
+        console.log("SALES: " + this.selec.salesTax);
     }
 };
 SearchComponent = __decorate([

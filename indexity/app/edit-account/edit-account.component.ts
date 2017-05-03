@@ -21,7 +21,7 @@ export class EditAccountComponent {
 	errorMessage: null | string = null;
   mode = 'Promise';
   theId: string;
-  usr =  new User('','','','','','','','','');
+  usr =  new User('','','','','','','','',0);
 	myStorage = localStorage;
 	oldPass: string;
 	currentUser: string;

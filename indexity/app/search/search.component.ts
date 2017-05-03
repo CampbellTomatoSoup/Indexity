@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 //import { Theme } from '../api/theme.interface';
 
 import { User } from '../api/user';
+import { Selection } from '../api/selection';
 import { APIRepository } from '../api/user-repository';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
@@ -19,7 +20,10 @@ export class SearchComponent implements OnInit {
   public user: User;
   errorMessage: null | string = null;
   theId: string;
-  usr =  new User('','','','','','','','','');
+  origin: string;
+  dest: string;
+  usr =  new User('','','','','','','','',0);
+  selec = new Selection(false, false, false, false, false, false, false);
   myStorage = localStorage;
 
   submitted = false;
@@ -28,13 +32,14 @@ export class SearchComponent implements OnInit {
   }
 
 //selected costs
-  publicTrans: false;
-  housing: false;
-  utilities: false;
-  groceries: false;
-  healthcare: false;
-  incomeTax: false;
-  salesTax: false;
+/*
+  publicTrans: boolean = false;
+  housing: boolean = false;
+  utilities: boolean = false;
+  groceries: boolean = false;
+  healthcare: boolean = false;
+  incomeTax: boolean = false;
+  salesTax: boolean = false;*/
 
 //a list of the cities
   public cities = [
@@ -62,31 +67,21 @@ export class SearchComponent implements OnInit {
     { value: 'dc', display: 'D.C.' },
 ];
 
-/*login(theUser: User) {
-  if (!theUser) { return; }
-  this.userService.login(theUser)
+saveSelections(id: string, theOrigin: string, theDest: string) {
+  this.userService.saveSelections(id, theOrigin, theDest)
   .then (
-    id  => {
+    id => {
       this.theId = id._body;
-      console.log("RESPONSE: " + this.theId);
-      this.usr.userId = this.theId;
-      this.myStorage.setItem('userId', this.theId);
-      console.log("STORAGE: " + this.myStorage['userId']);
-      this.myStorage.setItem('user', this.usr);
-      //this.myStorage.setItem('currentUser', JSON.stringify (this.usr));
-      if (this.theId != '-1') {
-        this.router.navigateByUrl('/search');
-      }
-      else { this.errorMessage = 'error'; }
-    })
-  .catch(
-    err => {
-      this.errorMessage = err;
+      console.log("ID_FROM_RESPONSE" + this.theId);
+      /*if () {
+        this.router.navigateByUrl('/resources');
+      } else {
+        this.errorMessage = 'error';
+      }*/
     }
-  );
-}*/
-
-
+  )
+  .catch ( err => { this.errorMessage = err; } );
+}
 
   ngOnInit(){
     this.user = {
@@ -95,8 +90,16 @@ export class SearchComponent implements OnInit {
   }
 }
 
-public save(isValid: boolean, f: User) {
-        console.log(f);
-    }
+public save() {
+  console.log("ORIGIN: " + this.origin);
+  console.log("DEST: " + this.dest);
+  console.log("PUBTRANS: " + this.selec.publicTrans);
+  console.log("HOUSING: " + this.selec.housing);
+  console.log("UTILS: " + this.selec.utilities);
+  console.log("GROCERIES: " + this.selec.groceries);
+  console.log("HEALTH: " + this.selec.healthcare);
+  console.log("INCOME: " + this.selec.incomeTax);
+  console.log("SALES: " + this.selec.salesTax);
+}
 
 }
