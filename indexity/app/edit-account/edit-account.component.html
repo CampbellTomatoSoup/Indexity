@@ -6,49 +6,58 @@
         <div class="col-sm-6">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form>
+                    <form #acctForm="ngForm" (ngSubmit)="onSubmit()">
                         <div class="form-group">
                             <label for="firstname">First Name</label>
-                            <input type="text" class="form-control" id="firstname" placeholder="First Name">
+                            <input type="text" class="form-control" id="firstname" [(ngModel)]="usr.firstName" name="firstname">
                         </div>
                         <div class="form-group">
                             <label for="lastname">Last Name</label>
-                            <input type="text" class="form-control" id="lastname" placeholder="Last Name">
+                            <input type="text" class="form-control" id="lastname" [(ngModel)]="usr.lastName" name="lastname">
                         </div>
                         <div class="form-group">
-                            <label for="usr">Username</label>
-                            <input type="text" class="form-control" id="usr" placeholder="Username">
+                            <label for="origin">Origin City</label>
+                            <input type="text" class="form-control" id="origin" [(ngModel)]="usr.lastCity" name="origin">
                         </div>
                         <div class="form-group">
                             <label for="occupation">Occupation</label>
-                            <input type="text" class="form-control" id="occupation" placeholder="Occupation">
+                            <input type="text" class="form-control" id="occupation" [(ngModel)]="usr.currJob" name="occupation">
                         </div>
                         <div class="form-group">
                             <label for="salary">Salary</label>
-                            <input type="text" class="form-control" id="salary" placeholder="Salary">
+                            <input pattern="[0-9]*" title="Please enter a number" type="text" class="form-control" id="salary" [(ngModel)]="usr.currSalary" name="salary">
                         </div>
                     </form>
                 </div>
             </div>
-            <button type="button" class="btn btn-primary btn-block">Save</button>
+            <div class="bg-success" *ngIf="acctMessage">
+              Your account has been updated successfully!
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" (click)="editAccount(usr)">Save</button>
         </div>
         <div class="col-sm-6">
             <h4>Change Password</h4>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form>
+                    <form #passwordForm="ngForm" (ngSubmit)="onSubmit()">
                         <div class="form-group">
-                            <label for="firstname">Old Password</label>
-                            <input type="text" class="form-control" id="firstname" placeholder="Old Password">
+                            <label for="oldpass">Old Password</label>
+                            <input type="text" class="form-control" id="oldpass" [(ngModel)]="oldPass" name="oldpass">
                         </div>
                         <div class="form-group">
-                            <label for="pwd">New Password</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="New Password">
+                            <label for="newpass">New Password</label>
+                            <input type="password" class="form-control" id="newpass" [(ngModel)]="usr.password" name="newpass">
                         </div>
                     </form>
                 </div>
             </div>
-            <button type="button" class="btn btn-primary btn-block">Save</button>
+            <div class="bg-success" *ngIf="pwMessage && !failpwMessage">
+              Your password has been changed successfully!
+            </div>
+            <div class="bg-danger" *ngIf="failpwMessage && !pwMessage">
+              Please make sure you typed in the correct password.
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" (click)="changePassword(usr)">Save</button>
         </div>
     </div>
 </div>

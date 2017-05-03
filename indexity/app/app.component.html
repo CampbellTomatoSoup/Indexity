@@ -17,9 +17,11 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li><a routerLink="">Login</a></li>
-                    <li><a href="/search">Search</a></li>
+                    <li class="dropdown-item disabled"><a href="/search">Search</a></li>
                     <li><a routerLink="/edit-account">Edit Account</a></li>
                     <li><a routerLink="/resources">Resources</a></li>
+										<li class="divider"></li>
+										<li><a routerLink="">Log out</a></li>
                 </ul>
             </div>
         </div>
@@ -27,7 +29,5 @@
 	<router-outlet></router-outlet>
 	<footer>
         Indexity © 2017
-		<br/>
-		<a>About Us</a> | <a>API</a> | <a>Jobs</a> | <a>Privacy</a> | <a>Terms</a> | <a>Contact Us</a>
-    </footer>
+  </footer>
 </div>

@@ -9,18 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-//import { APIRepository } from '../api/user-repository.service';
 const user_1 = require("../api/user");
 const user_repository_1 = require("../api/user-repository");
 const core_1 = require("@angular/core");
 const router_1 = require("@angular/router");
+//import { LocalStorageModule } from 'angular-2-local-storage';
 let LandingComponent = class LandingComponent {
     constructor(userService, router) {
         this.userService = userService;
         this.router = router;
         this.errorMessage = null;
-        this.mode = 'Promise';
-        this.usr = new user_1.User('', '');
+        this.usr = new user_1.User('', '', '', '', '', '', '', '', '');
+        this.myStorage = localStorage;
         this.submitted = false;
     }
     login(theUser) {
@@ -30,7 +30,12 @@ let LandingComponent = class LandingComponent {
         this.userService.login(theUser)
             .then(id => {
             this.theId = id._body;
-            console.log(this.theId);
+            console.log("RESPONSE: " + this.theId);
+            this.usr.userId = this.theId;
+            this.myStorage.setItem('userId', this.theId);
+            console.log("STORAGE: " + this.myStorage['userId']);
+            this.myStorage.setItem('user', this.usr);
+            //this.myStorage.setItem('currentUser', JSON.stringify (this.usr));
             if (this.theId != '-1') {
                 this.router.navigateByUrl('/search');
             }
@@ -41,29 +46,6 @@ let LandingComponent = class LandingComponent {
             .catch(err => {
             this.errorMessage = err;
         });
-    }
-    /*
-    add(name: string): void {
-      name = name.trim();
-      if (!name) { return; }
-      this.heroService.create(name)
-        .then(hero => {
-          this.heroes.push(hero);
-          this.selectedHero = null;
-        });
-    }
-    */
-    /*
-    create(name: string): Promise<Hero> {
-      return this.http
-        .post(this.heroesUrl, JSON.stringify({name: name}), {headers: this.headers})
-        .toPromise()
-        .then(res => res.json().data as Hero)
-        .catch(this.handleError);
-    }
-    */
-    goBack() {
-        this.location.back();
     }
     onSubmit() {
         this.submitted = true;
