@@ -19,8 +19,8 @@ export class Stuff {
   styleUrls: ['./app/search/search.component.css'],
   providers: [ APIRepository ]
 })
-
 export class SearchComponent {
+
   constructor(private userService: APIRepository, private router: Router) { }
 
   public user: User;
