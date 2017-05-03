@@ -75,3 +75,7 @@ input[type="checkbox"]:checked + .label-text:before {
   90%  {transform: scale(1.4); }
   100%  {transform: scale(1); }
 }
+
+.form-group {
+  margin: 1px;
+}
