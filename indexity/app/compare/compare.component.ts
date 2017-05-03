@@ -51,9 +51,9 @@ export class CompareComponent implements OnInit {
 		        .attr("x", function(d){ return d.x; })
 		        .attr("y", function(d){ return d.y + 5; })
 		        .attr("text-anchor", "middle")
-		        .text(function(d){ return d["Amount"]; })
+		        .text(function(d){ return d["City"]; })
 		        .style({
-		            "fill":"white",
+		            "fill":"black",
 		            "font-family":"Helvetica Neue, Helvetica, Arial, san-serif",
 		            "font-size": "12px"
 		        });
