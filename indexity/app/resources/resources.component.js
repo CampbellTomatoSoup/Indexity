@@ -23,14 +23,21 @@ let ResourcesComponent = class ResourcesComponent {
         this.submitted = false;
     }
     ngOnInit() {
-        getAll();
-        Promise < Person > {
-            return: this.http
-                .get(`${this.baseUrl}/people`, { headers: this.getHeaders() })
-                .toPromise()
-                .then(mapPersons)
-                .catch(handleError)
-        };
+        getResources();
+        {
+            this.userService.getResources()
+                .then((result) => {
+                this.result = result.artists.items;
+                this.result =
+                    this.result =
+                        this.result =
+                            this.result =
+                                this.result =
+                                    this.result =
+                ;
+            })
+                .catch((error) => console.error(error));
+        }
     }
     handleError(error) {
         console.error('An error occurred', error);

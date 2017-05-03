@@ -33,6 +33,13 @@ let APIRepository = class APIRepository {
             .then(this.extractData)
             .catch(this.handleError);
     }
+    getResources() {
+        let options = new http_2.RequestOptions({ headers: this.headers });
+        const url = this.__url;
+        return this.http.get(url + '/top10')
+            .map((response) => response.json())
+            .toPromise();
+    }
     handleError(error) {
         console.error('An error occurred', error);
         return Promise.reject(error.message || error);

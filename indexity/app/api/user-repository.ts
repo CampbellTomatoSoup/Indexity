@@ -31,6 +31,14 @@ public login(user: User) : Promise<any> {
     .catch(this.handleError);
 }
 
+public getResources(): Promise<any> {
+	let options = new RequestOptions({headers: this.headers});
+	const url = this.__url;
+	return this.http.get(url + '/top10')
+		 .map((response) => response.json())
+		 .toPromise();
+}
+
 private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);

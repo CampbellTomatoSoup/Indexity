@@ -18,15 +18,21 @@ errorMessage: null | string = null;
  myStorage = localStorage;
 
  constructor (private userService: APIRepository, private router: Router) {}
-
-	ngOnInit() {
-	getAll(): Promise<Person>{
-     return this.http
-       .get(`${this.baseUrl}/people`, {headers: this.getHeaders()})
-       .toPromise()
-       .then(mapPersons)
-       .catch(handleError);
-   }
+ ngOnInit() {
+getResources() {
+			this.userService.getResources()
+				.then((result) => {
+			this.result = result.artists.items;
+			this.result =
+			this.result =
+			this.result =
+			this.result =
+			this.result =
+			this.result =
+		})
+		.catch((error) => console.error(error));
+	}
+}
 
 	 private handleError(error: any): Promise<any> {
 	     console.error('An error occurred', error);
@@ -36,5 +42,5 @@ errorMessage: null | string = null;
 submitted = false;
 onSubmit() {
 	this.submitted = true;
-}
+	}
  }
