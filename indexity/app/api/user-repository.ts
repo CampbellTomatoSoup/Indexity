@@ -9,7 +9,8 @@ import { User } from '../api/user';
 export class APIRepository {
 private headers = new Headers({'Content-Type': 'application/json'});
 
-private __url = "http://54.213.29.40/api";
+//private __url = "http://54.213.29.40/api";
+private __url = "http://34.208.232.114/api";
 
 constructor(private http: Http) { }
 
@@ -64,6 +65,15 @@ public saveSelections(theId: string, origin: string, dest: string) : Promise<any
   return this.http.post(url + '/search', {"userId":theId, "originCity":origin, "destinationCity":dest})
 		.toPromise()
     .then ( this.extractData.userid )
+    .catch ( this.handleError );
+}
+
+public logout(theId: string) : Promise<any> {
+  let options = new RequestOptions({ headers: this.headers });
+  const url = this.__url;
+  return this.http.post(url + '/logout', {"userId":theId})
+		.toPromise()
+    .then ( this.extractData )
     .catch ( this.handleError );
 }
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { APIRepository } from '../api/user-repository';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 
 @Component({
 	selector: 'resources',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class CompareComponent implements OnInit {
+	myStorage = localStorage;
+	constructor(private userService: APIRepository, private router: Router) {
+		if (this.myStorage.getItem("userId") === null) { // ===
+			console.log("there's a userid" + this.myStorage.getItem("userId"));
+			// navigate back to login and clear local storage
+			this.router.navigateByUrl("");
+			this.myStorage.removeItem("userId");
+		}
+	}
 	ngOnInit() {
-		var d3 = window['d3'];
 
+		var d3 = window['d3'];
+//
 		var diameter = 500, //max size of the bubbles
 		    color    = d3.scale.category20b(); //color category
 

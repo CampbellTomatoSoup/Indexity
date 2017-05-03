@@ -14,7 +14,7 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 // for logout --> each page must check if there is a userid in localStorage
 // else show a message that you must be logged in or give them option to sign up
 
-export class EditAccountComponent {
+export class EditAccountComponent implements OnInit{
 	acctMessage: null | string = null;
 	pwMessage: null | string = null;
 	failpwMessage: null | string = null;
@@ -30,6 +30,15 @@ export class EditAccountComponent {
         //this.token = currentUser && currentUser.token;
 	}
 
+	ngOnInit() {
+		if (this.myStorage.getItem("userId") === null) { // ===
+      //console.log("there's a userid" + this.myStorage.getItem("userId"));
+			// navigate back to login and clear local storage
+			this.router.navigateByUrl("");
+			this.myStorage.removeItem("userId");
+    }
+	}
+//
 	changePassword (theUser: User) {
 		// currentUser is what's in localStorage
 		this.currentUser = JSON.parse (this.myStorage['userId']);

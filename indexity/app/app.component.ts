@@ -12,11 +12,11 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 
 export class AppComponent {
     title = "Indexity";
-    /*errorMessage: null | string = null;
-    theId: string;
+    errorMessage: null | string = null;
+    /*theId: string;
     usr =  new User('','','','','','','','',0);*/
     myStorage = localStorage;
-
+    currentUser: string;
     //constructor (private userService: APIRepository, private router: Router) {}
 
     ngOnInit {
@@ -26,7 +26,19 @@ export class AppComponent {
     }
 
     logout() {
-      //
+      this.currentUser = JSON.parse (this.myStorage['userId']);
+  		var data = this.myStorage['userId'];
+      this.userService.logout(data)
+      .then (
+        data => {
+          console.log(data);
+        }
+      )
+      .catch (
+        err => {
+          this.errorMessage = err;
+        }
+      );
     }
 
     /*

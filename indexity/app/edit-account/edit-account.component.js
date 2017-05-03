@@ -30,6 +30,15 @@ class EditAccountComponent {
         this.submitted = false;
         //this.token = currentUser && currentUser.token;
     }
+    ngOnInit() {
+        if (this.myStorage.getItem("userId") === null) {
+            //console.log("there's a userid" + this.myStorage.getItem("userId"));
+            // navigate back to login and clear local storage
+            this.router.navigateByUrl("");
+            this.myStorage.removeItem("userId");
+        }
+    }
+    //
     changePassword(theUser) {
         // currentUser is what's in localStorage
         this.currentUser = JSON.parse(this.myStorage['userId']);

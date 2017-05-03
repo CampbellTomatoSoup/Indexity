@@ -17,7 +17,8 @@ let APIRepository = class APIRepository {
     constructor(http) {
         this.http = http;
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        this.__url = "http://54.213.29.40/api";
+        //private __url = "http://54.213.29.40/api";
+        this.__url = "http://34.208.232.114/api";
     }
     extractData(res) {
         let body = res.json();
@@ -63,6 +64,14 @@ let APIRepository = class APIRepository {
         return this.http.post(url + '/search', { "userId": theId, "originCity": origin, "destinationCity": dest })
             .toPromise()
             .then(this.extractData.userid)
+            .catch(this.handleError);
+    }
+    logout(theId) {
+        let options = new http_1.RequestOptions({ headers: this.headers });
+        const url = this.__url;
+        return this.http.post(url + '/logout', { "userId": theId })
+            .toPromise()
+            .then(this.extractData)
             .catch(this.handleError);
     }
     handleError(error) {

@@ -22,7 +22,7 @@ export class Stuff {
 
 export class SearchComponent implements OnInit {
   constructor(private userService: APIRepository, private router: Router) { }
-
+//
   public user: User;
   errorMessage: null | string = null;
   theId: string;
@@ -38,8 +38,12 @@ export class SearchComponent implements OnInit {
     // if no userid in localstorage, then redirect to login
     //for (let key in this.myStorage) {
       //console.log("KEY: " + this.myStorage[key]);
-    if (this.myStorage.getItem("userId") != null) { // ===
+    if (this.myStorage.getItem("userId") === null) { // ===
       console.log("there's a userid" + this.myStorage.getItem("userId"));
+			// navigate back to login and clear local storage
+			this.router.navigateByUrl("");
+			this.myStorage.removeItem("userId");
+      
     }
   }
 
