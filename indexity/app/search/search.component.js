@@ -56,6 +56,14 @@ let SearchComponent = class SearchComponent {
             { value: 'dc', display: 'D.C.' },
         ];
     }
+    ngOnInit() {
+        // if no userid in localstorage, then redirect to login
+        //for (let key in this.myStorage) {
+        //console.log("KEY: " + this.myStorage[key]);
+        if (this.myStorage.getItem("userId") != null) {
+            console.log("there's a userid" + this.myStorage.getItem("userId"));
+        }
+    }
     onSubmit() {
         this.submitted = true;
     }
