@@ -52,11 +52,10 @@ public changePassword(theId: string, oldpass: string, user: User) : Promise<any>
 public editAccount(theId: string, user: User) : Promise<any> {
   let options = new RequestOptions({ headers: this.headers });
   const url = this.__url;
-  return this.http.post(url + '/edit', {"firstName":user.firstName, "lastName":user.lastName, "lastCity":user.lastCity, "currJob":user.currJob, "currSalary":user.currSalary, "userId":theId, "password":user.password})
+  return this.http.post(url + '/edit', {"firstName":user.firstName, "lastName":user.lastName,"lastCity":user.lastCity, "currJob":user.currJob, "currSalary":user.currSalary, "userId":theId})
 		.toPromise()
     .then ( this.extractData.userid )
     .catch ( this.handleError );
-	// error if username or email
 }
 
 private handleError(error: any): Promise<any> {

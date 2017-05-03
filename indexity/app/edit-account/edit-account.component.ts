@@ -11,12 +11,16 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 	providers: [ APIRepository ]
 })
 
-export class EditAccountComponent {
+// for logout --> each page must check if there is a userid in localStorage
+// else show a message that you must be logged in or give them option to sign up
 
+export class EditAccountComponent {
+	acctMessage: null | string = null;
 	pwMessage: null | string = null;
+	failpwMessage: null | string = null;
   mode = 'Promise';
   theId: string;
-  usr =  new User('','','','','','');
+  usr =  new User('','','','','','','','','');
 	myStorage = localStorage;
 	oldPass: string;
 	currentUser: string;
@@ -36,27 +40,38 @@ export class EditAccountComponent {
     .then (
       id  => {
         this.theId = JSON.parse(id._body);
-				console.log("RESPONSEID: " + this.theId);
-				console.log("STORAGEID: " + this.currentUser);
-				console.log("JSONPARSE: " + JSON.parse(this.theId));
-
+				//console.log("RESPONSEID: " + this.theId);
+				//console.log("STORAGEID: " + this.currentUser);
+				//console.log("JSONPARSE: " + JSON.parse(this.theId));
 				if (JSON.parse(this.theId) == this.currentUser) {
-					// if old password matches old pass
 					this.pwMessage = 'awesome pw';
-					//console.log("password success! (MAYBE)");
 				} else {
-					console.log("password fail...");
+					this.failpwMessage = 'not so awesome pw';
 				}
-        //if (this.theId != '-1') { this.router.navigateByUrl('/search'); }
-        //else { this.errorMessage = 'error'; }
       })
-    .catch(
-      err => {
-				console.log(err);
-        this.errorMessage = err;
-      }
-    );
+    .catch( err => { this.errorMessage = err; } );
   }
+
+	editAccount(theUser: User) {
+		this.currentUser = JSON.parse (this.myStorage['userId']);
+		var data = this.myStorage['userId'];
+
+		for (let key in theUser) {
+			//console.log("USERKEY: " + key + " USERVALUE: " + theUser[key]);
+		}
+
+		if (!theUser) { return; }
+		this.userService.editAccount(data, theUser)
+		.then (
+			id  => {
+				console.log(id);
+				console.log("RESPONSE_ID: " + this.theId);
+				console.log("STORAGE_ID: " + this.currentUser);
+				console.log("ID_FOR_REQ: " + data);
+				//this.acctMessage = 'this is a good account';
+			})
+		.catch( err => { this.errorMessage = err; } );
+	}
 
   submitted = false;
   onSubmit() {

@@ -52,11 +52,10 @@ let APIRepository = class APIRepository {
     editAccount(theId, user) {
         let options = new http_1.RequestOptions({ headers: this.headers });
         const url = this.__url;
-        return this.http.post(url + '/edit', { "firstName": user.firstName, "lastName": user.lastName, "lastCity": user.lastCity, "currJob": user.currJob, "currSalary": user.currSalary, "userId": theId, "password": user.password })
+        return this.http.post(url + '/edit', { "firstName": user.firstName, "lastName": user.lastName, "lastCity": user.lastCity, "currJob": user.currJob, "currSalary": user.currSalary, "userId": theId })
             .toPromise()
             .then(this.extractData.userid)
             .catch(this.handleError);
-        // error if username or email
     }
     handleError(error) {
         console.error('An error occurred', error);

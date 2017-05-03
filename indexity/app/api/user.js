@@ -2,9 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class User {
     /*
-    id: number
-    job: string;
-    salary: number;
     saved: { city: string, dateSaved: string }[];
     */
     constructor(userId, username, password, email, firstName, lastName, lastCity, currJob, currSalary) {
