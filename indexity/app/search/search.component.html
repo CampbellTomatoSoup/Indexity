@@ -2,138 +2,67 @@
   <h1>Indexity</h1>
   <h3 class = "tagline"> "Go West young man!" </h3>
 
-  <div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Origin City <b class="caret"></b></a>
-      <ul class="dropdown-menu">
-          <li>
-              <div class="row" style="width: 200px;">
-                  <ul class="list-unstyled col-md-8">
-                      <li><a href="#">Austin</a></li>
-                      <li><a href="#">Baltimore</a></li>
-                      <li><a href="#">Boston</a></li>
+  <form #f="ngForm" novalidate>
+    <div>
+    <label>Origin City</label>
+    <select name="city1" [(ngModel)]="user.city1">
+        <option *ngFor="let city of cities" [value]="city.value">
+        {{city.display}}
+        </option>
+    </select>
 
-                      <li><a href="#">Columbus</a></li>
-                      <li><a href="#">Dallas</a></li>
-                      <li><a href="#">Denver</a></li>
-
-                      <li><a href="#">Detroit</a></li>
-                      <li><a href="#">Honolulu</a></li>
-                      <li><a href="#">Houston</a></li>
-
-                      <li><a href="#">Las Vegas</a></li>
-                      <li><a href="#">Los Angeles</a></li>
-                      <li><a href="#">Memphis</a></li>
-
-                      <li><a href="#">New York</a></li>
-                      <li><a href="#">Orlando</a></li>
-                      <li><a href="#">Philadelphia</a></li>
-
-                      <li><a href="#">Pittsburgh</a></li>
-                      <li><a href="#">San Antonio</a></li>
-                      <li><a href="#">San Diego</a></li>
-
-                      <li><a href="#">San Fransisco</a></li>
-                      <li><a href="#">Seattle</a></li>
-                      <li><a href="#">St. Louis</a></li>
-                      <li><a href="#">D.C.</a></li>
-                  </ul>
-              </div>
-          </li>
-      </ul>
-    </button>
-  </div>
-
-
-  <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-
-      <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Destination City <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-              <li>
-                  <div class="row" style="width: 200px;">
-                      <ul class="list-unstyled col-md-8">
-                          <li><a href="#">Austin</a></li>
-                          <li><a href="#">Baltimore</a></li>
-                          <li><a href="#">Boston</a></li>
-
-                          <li><a href="#">Columbus</a></li>
-                          <li><a href="#">Dallas</a></li>
-                          <li><a href="#">Denver</a></li>
-
-                          <li><a href="#">Detroit</a></li>
-                          <li><a href="#">Honolulu</a></li>
-                          <li><a href="#">Houston</a></li>
-
-                          <li><a href="#">Las Vegas</a></li>
-                          <li><a href="#">Los Angeles</a></li>
-                          <li><a href="#">Memphis</a></li>
-
-                          <li><a href="#">New York</a></li>
-                          <li><a href="#">Orlando</a></li>
-                          <li><a href="#">Philadelphia</a></li>
-
-                          <li><a href="#">Pittsburgh</a></li>
-                          <li><a href="#">San Antonio</a></li>
-                          <li><a href="#">San Diego</a></li>
-
-                          <li><a href="#">San Fransisco</a></li>
-                          <li><a href="#">Seattle</a></li>
-                          <li><a href="#">St. Louis</a></li>
-                          <li><a href="#">D.C.</a></li>
-                      </ul>
-                  </div>
-              </li>
-          </ul>
-        </button>
-      </div>
-
-  <button type="button" class="btn btn-default">
-  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-</button>
+<form #f="ngForm" novalidate>
+  <div>
+  <label>Destination City</label>
+  <select name="city2" [(ngModel)]="user.city2">
+      <option *ngFor="let city of cities" [value]="city.value">
+      {{city.display}}
+      </option>
+  </select>
 
   <h2> Pick your pieces. </h2>
-  <form>
+  <form #f="ngForm" novalidate>
+    <div>
+          <input type="checkbox" name="publicTrans"  [(ngModel)]="user.publicTrans">
+          <label> Public Transportation </label>
+  </div>
+  <div>
     <label>
-    <input type="checkbox">
-    <span class="label-text">Public Transportation </span>
-  </label>
-
-  <label>
-    <input type="checkbox">
-    <span class="label-text">Housing </span>
-  </label>
-
-  <label>
-    <input type="checkbox">
-    <span class="label-text">Utilities </span>
-  </label>
-<br>
-
-  <label>
-  <input type="checkbox">
-  <span class="label-text">Groceries </span>
-</label>
-
-<label>
-  <input type="checkbox">
-  <span class="label-text">Healthcare </span>
-</label>
-
-<label>
-  <input type="checkbox">
-  <span class="label-text">Income Tax </span>
-</label>
-
-<br>
-
-  <label>
-  <input type="checkbox">
-  <span class="label-text">Sales Tax </span>
-</label>
-</form>
-
-<a routerLink="/piechart"><button type="button" class="btn btn-success btn-lg"> Let's look! </button> </a>
-
+        <input type="checkbox" name="housing"  [(ngModel)]="user.housing">
+        Housing
+    </label>
 </div>
+<div>
+    <label>
+        <input type="checkbox" name="utilities"  [(ngModel)]="user.utilities">
+        Utilities
+    </label>
+</div>
+<div>
+    <label>
+        <input type="checkbox" name="groceries"  [(ngModel)]="user.groceries">
+        Groceries
+    </label>
+</div>
+<div>
+    <label>
+        <input type="checkbox" name="healthcare"  [(ngModel)]="user.healthcare">
+        Healthcare
+    </label>
+</div>
+<div>
+    <label>
+        <input type="checkbox" name="incomeTax"  [(ngModel)]="user.incomeTax">
+        Income Tax
+    </label>
+</div>
+<div>
+    <label>
+        <input type="checkbox" name="salesTax"  [(ngModel)]="user.salesTax">
+        Sales Tax
+    </label>
+</div>
+  </form>
+
+
+<a routerLink="/compare"><button type="submit"(click)="save(f.value, f.valid)"> Let's look! </button></a>
