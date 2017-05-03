@@ -29,10 +29,8 @@ let LandingComponent = class LandingComponent {
         this.userService.login(theUser)
             .then(id => {
             this.theId = id._body;
-            //console.log("RESPONSE: " + this.theId);
             this.usr.userId = this.theId;
             this.myStorage.setItem('userId', this.theId);
-            //console.log("STORAGE: " + this.myStorage['userId']);
             //this.myStorage.setItem('user', this.usr);
             //this.myStorage.setItem('currentUser', JSON.stringify (this.usr));
             if (this.theId != '-1') {

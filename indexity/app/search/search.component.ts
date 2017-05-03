@@ -19,8 +19,8 @@ export class Stuff {
   styleUrls: ['./app/search/search.component.css'],
   providers: [ APIRepository ]
 })
-export class SearchComponent {
 
+export class SearchComponent implements OnInit {
   constructor(private userService: APIRepository, private router: Router) { }
 
   public user: User;
@@ -33,6 +33,15 @@ export class SearchComponent {
   myStorage = localStorage;
   stuffs: Stuff;
   currentUser: string;
+
+  ngOnInit() {
+    // if no userid in localstorage, then redirect to login
+    //for (let key in this.myStorage) {
+      //console.log("KEY: " + this.myStorage[key]);
+    if (this.myStorage.getItem("userId") != null) { // ===
+      console.log("there's a userid" + this.myStorage.getItem("userId"));
+    }
+  }
 
   submitted = false;
   onSubmit() {
