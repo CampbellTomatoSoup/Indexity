@@ -4,7 +4,7 @@
               <label>
                 Origin City
               </label>
-              <select name="city1" [(ngModel)]="origin">
+              <select name="origin" [(ngModel)]="origin">
                 <option *ngFor="let city of cities" [value]="city.value">
                   {{city.display}}
                 </option>
@@ -13,7 +13,7 @@
               <label>
                 Destination City
               </label>
-              <select name="city2" [(ngModel)]="dest">
+              <select name="dest" [(ngModel)]="dest">
                 <option *ngFor="let city of cities" [value]="city.value">
                   {{city.display}}
                 </option>

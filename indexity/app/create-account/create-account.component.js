@@ -31,7 +31,7 @@ let CreateAccountComponent = class CreateAccountComponent {
             this.theId = id._body;
             this.usr.userId = this.theId;
             this.myStorage.setItem('userId', this.theId);
-            this.myStorage.setItem('user', this.usr);
+            //this.myStorage.setItem('user', this.usr);
             if (this.theId !== '-1') {
                 this.router.navigateByUrl('/search');
             }

@@ -8,38 +8,36 @@ import { APIRepository } from '../api/user-repository';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
+export class Stuff {
+  public city1: string;
+  public city2: string;
+}
+
 @Component({
   selector: 'search',
   templateUrl: './app/search/search.component.html',
   styleUrls: ['./app/search/search.component.css'],
   providers: [ APIRepository ]
 })
-export class SearchComponent implements OnInit {
+
+export class SearchComponent {
   constructor(private userService: APIRepository, private router: Router) { }
 
   public user: User;
   errorMessage: null | string = null;
   theId: string;
-  origin: string;
-  dest: string;
+  origin: string = null;
+  dest: string = null;
   usr =  new User('','','','','','','','',0);
   selec = new Selection(false, false, false, false, false, false, false);
   myStorage = localStorage;
+  stuffs: Stuff;
+  currentUser: string;
 
   submitted = false;
   onSubmit() {
     this.submitted = true;
   }
-
-//selected costs
-/*
-  publicTrans: boolean = false;
-  housing: boolean = false;
-  utilities: boolean = false;
-  groceries: boolean = false;
-  healthcare: boolean = false;
-  incomeTax: boolean = false;
-  salesTax: boolean = false;*/
 
 //a list of the cities
   public cities = [
@@ -57,38 +55,47 @@ export class SearchComponent implements OnInit {
     { value: 'memphis', display: 'Memphis' },
     { value: 'newyork', display: 'New York' },
     { value: 'orlando', display: 'Orlando' },
-    { value: 'philidelphia', display: 'Philidelphia' },
+    { value: 'philadelphia', display: 'Philadelphia' },
     { value: 'pittsburgh', display: 'Pittsburgh' },
     { value: 'sanantonio', display: 'San Antonio' },
     { value: 'sandiego', display: 'San Diego' },
-    { value: 'sanfransisco', display: 'San Fransisco' },
+    { value: 'sanfrancisco', display: 'San Francisco' },
     { value: 'seattle', display: 'Seattle' },
     { value: 'stlouis', display: 'St. Louis' },
     { value: 'dc', display: 'D.C.' },
 ];
 
-saveSelections(id: string, theOrigin: string, theDest: string) {
-  this.userService.saveSelections(id, theOrigin, theDest)
+saveSelections(theOrigin: string, theDest: string) {
+  /*for (let key in this.myStorage) {
+    console.log("KEY: " + this.myStorage[key]);
+  }
+  this.currentUser = JSON.parse (this.myStorage['userId']);
+  var data = this.myStorage['userId'];
+  this.userService.saveSelections(data, theOrigin, theDest)
   .then (
     id => {
       this.theId = id._body;
-      console.log("ID_FROM_RESPONSE" + this.theId);
-      /*if () {
+      console.log(id);
+      if (JSON.parse(this.theId) == this.currentUser) {
         this.router.navigateByUrl('/resources');
       } else {
         this.errorMessage = 'error';
-      }*/
+      }
     }
-  )
-  .catch ( err => { this.errorMessage = err; } );
+  );
+  .catch (
+    err => {
+      this.errorMessage = err;
+    }
+  );*/
 }
 
-  ngOnInit(){
-    this.user = {
+  /*ngOnInit(){
+    this.stuffs = {
     city1: null,
     city2: null
   }
-}
+}*/
 
 public save() {
   console.log("ORIGIN: " + this.origin);
