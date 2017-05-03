@@ -109,6 +109,7 @@ export class CompareComponent implements OnInit {
 		            "fill":"black",
 		            "font-family":"Cuprum, Helvetica Neue, Helvetica, Arial, san-serif",
 		            "font-size": "15px"
+
 		        });
 
 
