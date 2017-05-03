@@ -23,6 +23,7 @@ class EditAccountComponent {
         this.acctMessage = null;
         this.pwMessage = null;
         this.failpwMessage = null;
+        this.errorMessage = null;
         this.mode = 'Promise';
         this.usr = new user_1.User('', '', '', '', '', '', '', '', '');
         this.myStorage = localStorage;
@@ -32,7 +33,6 @@ class EditAccountComponent {
     changePassword(theUser) {
         // currentUser is what's in localStorage
         this.currentUser = JSON.parse(this.myStorage['userId']);
-        //console.log("STORAGEID: " + this.currentUser);
         var data = this.myStorage['userId'];
         console.log("STORAGEID: " + this.currentUser + "\tIDTOSEND: " + data + "\tOLDPASS: " + this.oldPass, "\tUSERPASS: " + this.usr.password);
         if (!theUser) {
@@ -41,9 +41,6 @@ class EditAccountComponent {
         this.userService.changePassword(data, this.oldPass, theUser)
             .then(id => {
             this.theId = JSON.parse(id._body);
-            //console.log("RESPONSEID: " + this.theId);
-            //console.log("STORAGEID: " + this.currentUser);
-            //console.log("JSONPARSE: " + JSON.parse(this.theId));
             if (JSON.parse(this.theId) == this.currentUser) {
                 this.pwMessage = 'awesome pw';
             }
@@ -56,19 +53,19 @@ class EditAccountComponent {
     editAccount(theUser) {
         this.currentUser = JSON.parse(this.myStorage['userId']);
         var data = this.myStorage['userId'];
-        for (let key in theUser) {
-            //console.log("USERKEY: " + key + " USERVALUE: " + theUser[key]);
-        }
         if (!theUser) {
             return;
         }
         this.userService.editAccount(data, theUser)
             .then(id => {
-            console.log(id);
-            console.log("RESPONSE_ID: " + this.theId);
-            console.log("STORAGE_ID: " + this.currentUser);
-            console.log("ID_FOR_REQ: " + data);
-            //this.acctMessage = 'this is a good account';
+            this.theId = JSON.parse(id._body);
+            //console.log("ID_FOR_REQ: " + data);
+            //console.log("RESPONSE_ID: " + this.theId);
+            //console.log("1COMPARE: " + JSON.parse(this.theId));
+            //console.log("2COMPARE: " + this.currentUser);
+            if (JSON.parse(this.theId) == this.currentUser) {
+                this.acctMessage = 'this is a good account';
+            }
         })
             .catch(err => { this.errorMessage = err; });
     }

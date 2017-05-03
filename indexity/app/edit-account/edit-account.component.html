@@ -30,10 +30,10 @@
                     </form>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-block" (click)="editAccount(usr)">Save</button>
             <div class="bg-success" *ngIf="acctMessage">
               Your account has been updated successfully!
             </div>
+            <button type="submit" class="btn btn-primary btn-block" (click)="editAccount(usr)">Save</button>
         </div>
         <div class="col-sm-6">
             <h4>Change Password</h4>
@@ -51,13 +51,13 @@
                     </form>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-block" (click)="changePassword(usr)">Save</button>
             <div class="bg-success" *ngIf="pwMessage && !failpwMessage">
               Your password has been changed successfully!
             </div>
             <div class="bg-danger" *ngIf="failpwMessage && !pwMessage">
               Please make sure you typed in the correct password.
             </div>
+            <button type="submit" class="btn btn-primary btn-block" (click)="changePassword(usr)">Save</button>
         </div>
     </div>
 </div>
