@@ -94,17 +94,28 @@ $app->post('/api/login', function ($request, $response) {
 // Changing Password
 $app->post('/api/changepassword', function ($request, $response) {
 	$input = $request->getParsedBody();
+	$query = trim($input['userId'], "\"");
 	$user = $this->db->prepare("SELECT userId FROM Sessions WHERE randString=:randString");
-        $user->bindParam("randString", $input['userId']);
+        $user->bindParam("randString", $query);
         $user->execute();
         $user = $user->fetch(PDO::FETCH_OBJ)->userId;
         intval($user);
-        $hashedPw = password_hash($input['newPassword'], PASSWORD_BCRYPT);
-	$change = $this->db->prepare("UPDATE Accounts SET password=:hashedPw WHERE userId=:userId");
-	$change->bindParam("hashedPw", $hashedPw);
-	$change->bindParam("userId", $user);
-	$change->execute();
-	return $response->withJson($input['userId']);
+	$stmt = $this->db->prepare("SELECT password FROM Accounts WHERE userId=:userId");
+        $stmt->bindParam("userId", $user);
+        $stmt->execute();
+	$oldHashedPw = $stmt->fetch(PDO::FETCH_OBJ)->password;
+//	echo $oldHashedPw;
+        if(password_verify($input['oldPassword'], $oldHashedPw)) {
+	        $hashedPw = password_hash($input['newPassword'], PASSWORD_BCRYPT);
+		$change = $this->db->prepare("UPDATE Accounts SET password=:hashedPw WHERE userId=:userId");
+		$change->bindParam("hashedPw", $hashedPw);
+		$change->bindParam("userId", $user);
+		$change->execute();
+		return $response->withJson($input['userId']);
+	} else {
+		echo -1;
+	}
+
 });
 
 // Logout
