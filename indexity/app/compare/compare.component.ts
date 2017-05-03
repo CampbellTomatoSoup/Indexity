@@ -22,12 +22,15 @@ export class CompareComponent implements OnInit {
 		    .append("svg")
 		    .attr("width", diameter)
 		    .attr("height", diameter)
-		    .attr("class", "bubble");
+		    .attr("class", "bubble")
+				.attr("align","center")
 
 		d3.csv("indexity.csv", function(error, data){
 			console.log(data);
 				//convert numerical values from strings to numbers
 		    data = data.map(function(d){ d.value = +d["Total"]; return d; });
+
+				document.getElementById("bubbles").align = "center";
 
 		    //bubbles needs very specific format, convert data to this.
 		    var nodes = bubble.nodes({children:data}).filter(function(d) { return !d.children; });
@@ -56,6 +59,8 @@ export class CompareComponent implements OnInit {
 		            "fill":"black",
 		            "font-family":"Helvetica Neue, Helvetica, Arial, san-serif",
 		            "font-size": "12px"
+
+
 		        });
 		})
 }
