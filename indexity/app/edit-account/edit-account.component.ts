@@ -34,7 +34,7 @@ export class EditAccountComponent {
 		// currentUser is what's in localStorage
 		this.currentUser = JSON.parse (this.myStorage['userId']);
 		var data = this.myStorage['userId'];
-		console.log("STORAGEID: " + this.currentUser + "\tIDTOSEND: " + data + "\tOLDPASS: " + this.oldPass "\tUSERPASS: " + this.usr.password);
+		//console.log("STORAGEID: " + this.currentUser + "\tIDTOSEND: " + data + "\tOLDPASS: " + this.oldPass "\tUSERPASS: " + this.usr.password);
 		if (!theUser) { return; }
     this.userService.changePassword (data, this.oldPass, theUser)
     .then (

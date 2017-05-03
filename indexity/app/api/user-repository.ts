@@ -61,7 +61,7 @@ public editAccount(theId: string, user: User) : Promise<any> {
 public saveSelections(theId: string, origin: string, dest: string) : Promise<any> {
   let options = new RequestOptions({ headers: this.headers });
   const url = this.__url;
-  return this.http.post(url + '/search', {"userId":theId, "originCity":origin, "destinationCity":string})
+  return this.http.post(url + '/search', {"userId":theId, "originCity":origin, "destinationCity":dest})
 		.toPromise()
     .then ( this.extractData.userid )
     .catch ( this.handleError );

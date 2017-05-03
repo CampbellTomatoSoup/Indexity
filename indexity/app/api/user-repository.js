@@ -60,7 +60,7 @@ let APIRepository = class APIRepository {
     saveSelections(theId, origin, dest) {
         let options = new http_1.RequestOptions({ headers: this.headers });
         const url = this.__url;
-        return this.http.post(url + '/search', { "userId": theId, "originCity": origin, "destinationCity": string })
+        return this.http.post(url + '/search', { "userId": theId, "originCity": origin, "destinationCity": dest })
             .toPromise()
             .then(this.extractData.userid)
             .catch(this.handleError);

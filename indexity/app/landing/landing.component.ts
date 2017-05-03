@@ -31,7 +31,7 @@ export class LandingComponent {
         this.usr.userId = this.theId;
         this.myStorage.setItem('userId', this.theId);
         //console.log("STORAGE: " + this.myStorage['userId']);
-        this.myStorage.setItem('user', this.usr);
+        //this.myStorage.setItem('user', this.usr);
         //this.myStorage.setItem('currentUser', JSON.stringify (this.usr));
         if (this.theId != '-1') {
           this.router.navigateByUrl('/search');

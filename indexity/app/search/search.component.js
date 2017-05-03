@@ -16,24 +16,20 @@ const user_1 = require("../api/user");
 const selection_1 = require("../api/selection");
 const user_repository_1 = require("../api/user-repository");
 const router_1 = require("@angular/router");
+class Stuff {
+}
+exports.Stuff = Stuff;
 let SearchComponent = class SearchComponent {
     constructor(userService, router) {
         this.userService = userService;
         this.router = router;
         this.errorMessage = null;
+        this.origin = null;
+        this.dest = null;
         this.usr = new user_1.User('', '', '', '', '', '', '', '', 0);
         this.selec = new selection_1.Selection(false, false, false, false, false, false, false);
         this.myStorage = localStorage;
         this.submitted = false;
-        //selected costs
-        /*
-          publicTrans: boolean = false;
-          housing: boolean = false;
-          utilities: boolean = false;
-          groceries: boolean = false;
-          healthcare: boolean = false;
-          incomeTax: boolean = false;
-          salesTax: boolean = false;*/
         //a list of the cities
         this.cities = [
             { value: 'austin', display: 'Austin' },
@@ -50,11 +46,11 @@ let SearchComponent = class SearchComponent {
             { value: 'memphis', display: 'Memphis' },
             { value: 'newyork', display: 'New York' },
             { value: 'orlando', display: 'Orlando' },
-            { value: 'philidelphia', display: 'Philidelphia' },
+            { value: 'philadelphia', display: 'Philadelphia' },
             { value: 'pittsburgh', display: 'Pittsburgh' },
             { value: 'sanantonio', display: 'San Antonio' },
             { value: 'sandiego', display: 'San Diego' },
-            { value: 'sanfransisco', display: 'San Fransisco' },
+            { value: 'sanfrancisco', display: 'San Francisco' },
             { value: 'seattle', display: 'Seattle' },
             { value: 'stlouis', display: 'St. Louis' },
             { value: 'dc', display: 'D.C.' },
@@ -63,25 +59,36 @@ let SearchComponent = class SearchComponent {
     onSubmit() {
         this.submitted = true;
     }
-    saveSelections(id, theOrigin, theDest) {
-        this.userService.saveSelections(id, theOrigin, theDest)
-            .then(id => {
+    saveSelections(theOrigin, theDest) {
+        /*for (let key in this.myStorage) {
+          console.log("KEY: " + this.myStorage[key]);
+        }
+        this.currentUser = JSON.parse (this.myStorage['userId']);
+        var data = this.myStorage['userId'];
+        this.userService.saveSelections(data, theOrigin, theDest)
+        .then (
+          id => {
             this.theId = id._body;
-            console.log("ID_FROM_RESPONSE" + this.theId);
-            /*if () {
+            console.log(id);
+            if (JSON.parse(this.theId) == this.currentUser) {
               this.router.navigateByUrl('/resources');
             } else {
               this.errorMessage = 'error';
-            }*/
-        })
-            .catch(err => { this.errorMessage = err; });
+            }
+          }
+        );
+        .catch (
+          err => {
+            this.errorMessage = err;
+          }
+        );*/
     }
-    ngOnInit() {
-        this.user = {
-            city1: null,
-            city2: null
-        };
+    /*ngOnInit(){
+      this.stuffs = {
+      city1: null,
+      city2: null
     }
+  }*/
     save() {
         console.log("ORIGIN: " + this.origin);
         console.log("DEST: " + this.dest);
