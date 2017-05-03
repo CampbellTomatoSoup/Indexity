@@ -98,6 +98,7 @@ saveSelections(theOrigin: string, theDest: string) {
 }*/
 
 public save() {
+
   console.log("ORIGIN: " + this.origin);
   console.log("DEST: " + this.dest);
   console.log("PUBTRANS: " + this.selec.publicTrans);
