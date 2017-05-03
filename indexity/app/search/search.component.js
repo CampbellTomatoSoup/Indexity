@@ -23,6 +23,7 @@ let SearchComponent = class SearchComponent {
         this.usr = new user_1.User('', '', '', '', '', '', '', '', '');
         this.myStorage = localStorage;
         this.submitted = false;
+
         //a list of the cities
         this.cities = [
             { value: 'austin', display: 'Austin' },
@@ -93,6 +94,7 @@ SearchComponent = __decorate([
         providers: [user_repository_1.APIRepository]
     }),
     __metadata("design:paramtypes", [user_repository_1.APIRepository, router_1.Router])
+
 ], SearchComponent);
 exports.SearchComponent = SearchComponent;
 //# sourceMappingURL=search.component.js.map

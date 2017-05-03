@@ -14,6 +14,7 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
   providers: [ APIRepository ]
 })
 export class SearchComponent implements OnInit {
+
   constructor(private userService: APIRepository, private router: Router) { }
 
   public user: User;
@@ -98,5 +99,4 @@ export class SearchComponent implements OnInit {
 public save(isValid: boolean, f: User) {
         console.log(f);
     }
-
-}
+  }
