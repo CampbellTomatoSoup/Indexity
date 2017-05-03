@@ -58,10 +58,6 @@ export class EditAccountComponent {
 		.then (
 			id  => {
 				this.theId = JSON.parse(id._body);
-				//console.log("ID_FOR_REQ: " + data);
-				//console.log("RESPONSE_ID: " + this.theId);
-				//console.log("1COMPARE: " + JSON.parse(this.theId));
-				//console.log("2COMPARE: " + this.currentUser);
 				if (JSON.parse(this.theId) == this.currentUser) {
 					this.acctMessage = 'this is a good account';
 				}

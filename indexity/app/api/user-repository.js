@@ -57,6 +57,14 @@ let APIRepository = class APIRepository {
             .then(this.extractData.userid)
             .catch(this.handleError);
     }
+    saveSelections(theId, origin, dest) {
+        let options = new http_1.RequestOptions({ headers: this.headers });
+        const url = this.__url;
+        return this.http.post(url + '/search', { "userId": theId, "originCity": origin, "destinationCity": string })
+            .toPromise()
+            .then(this.extractData.userid)
+            .catch(this.handleError);
+    }
     handleError(error) {
         console.error('An error occurred', error);
         return Promise.reject(error.message || error);
@@ -67,4 +75,7 @@ APIRepository = __decorate([
     __metadata("design:paramtypes", [http_1.Http])
 ], APIRepository);
 exports.APIRepository = APIRepository;
+/*
+connections work on local npm
+*/
 //# sourceMappingURL=user-repository.js.map

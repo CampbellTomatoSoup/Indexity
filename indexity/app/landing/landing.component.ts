@@ -4,7 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Location } from '@angular/common';
-//import { LocalStorageModule } from 'angular-2-local-storage';
 
 @Component({
   //moduleId: module.id,
@@ -28,10 +27,10 @@ export class LandingComponent {
     .then (
       id  => {
         this.theId = id._body;
-        console.log("RESPONSE: " + this.theId);
+        //console.log("RESPONSE: " + this.theId);
         this.usr.userId = this.theId;
         this.myStorage.setItem('userId', this.theId);
-        console.log("STORAGE: " + this.myStorage['userId']);
+        //console.log("STORAGE: " + this.myStorage['userId']);
         this.myStorage.setItem('user', this.usr);
         //this.myStorage.setItem('currentUser', JSON.stringify (this.usr));
         if (this.theId != '-1') {

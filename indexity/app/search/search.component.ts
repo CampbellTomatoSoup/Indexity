@@ -1,18 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../api/user.interface';
-import { Theme } from '../api/theme.interface';
-import { Router } from '@angular/router';
-import { SearchRepository } from '../api/search-repository';
+//import { User } from '../api/user.interface';
+//import { Theme } from '../api/theme.interface';
+
+import { User } from '../api/user';
+import { APIRepository } from '../api/user-repository';
+import { ActivatedRoute, Router, Params } from '@angular/router';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'search',
   templateUrl: './app/search/search.component.html',
-  styleUrls: ['./app/search/search.component.css']
+  styleUrls: ['./app/search/search.component.css'],
+  providers: [ APIRepository ]
 })
 export class SearchComponent implements OnInit {
-  constructor(private userService: SearchRepository, private router: Router) { }
+
+  constructor(private userService: APIRepository, private router: Router) { }
 
   public user: User;
+  errorMessage: null | string = null;
+  theId: string;
+  usr =  new User('','','','','','','','','');
+  myStorage = localStorage;
+
+  submitted = false;
+  onSubmit() {
+    this.submitted = true;
+  }
 
 //selected costs
   publicTrans: false;
@@ -48,6 +62,32 @@ export class SearchComponent implements OnInit {
     { value: 'stlouis', display: 'St. Louis' },
     { value: 'dc', display: 'D.C.' },
 ];
+
+/*login(theUser: User) {
+  if (!theUser) { return; }
+  this.userService.login(theUser)
+  .then (
+    id  => {
+      this.theId = id._body;
+      console.log("RESPONSE: " + this.theId);
+      this.usr.userId = this.theId;
+      this.myStorage.setItem('userId', this.theId);
+      console.log("STORAGE: " + this.myStorage['userId']);
+      this.myStorage.setItem('user', this.usr);
+      //this.myStorage.setItem('currentUser', JSON.stringify (this.usr));
+      if (this.theId != '-1') {
+        this.router.navigateByUrl('/search');
+      }
+      else { this.errorMessage = 'error'; }
+    })
+  .catch(
+    err => {
+      this.errorMessage = err;
+    }
+  );
+}*/
+
+
 
   ngOnInit(){
     this.user = {

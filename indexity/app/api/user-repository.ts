@@ -58,8 +58,21 @@ public editAccount(theId: string, user: User) : Promise<any> {
     .catch ( this.handleError );
 }
 
+public saveSelections(theId: string, origin: string, dest: string) : Promise<any> {
+  let options = new RequestOptions({ headers: this.headers });
+  const url = this.__url;
+  return this.http.post(url + '/search', {"userId":theId, "originCity":origin, "destinationCity":string})
+		.toPromise()
+    .then ( this.extractData.userid )
+    .catch ( this.handleError );
+}
+
 private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }
 }
+
+/*
+connections work on local npm
+*/

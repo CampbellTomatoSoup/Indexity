@@ -13,7 +13,6 @@ const user_1 = require("../api/user");
 const user_repository_1 = require("../api/user-repository");
 const core_1 = require("@angular/core");
 const router_1 = require("@angular/router");
-//import { LocalStorageModule } from 'angular-2-local-storage';
 let LandingComponent = class LandingComponent {
     constructor(userService, router) {
         this.userService = userService;
@@ -30,10 +29,10 @@ let LandingComponent = class LandingComponent {
         this.userService.login(theUser)
             .then(id => {
             this.theId = id._body;
-            console.log("RESPONSE: " + this.theId);
+            //console.log("RESPONSE: " + this.theId);
             this.usr.userId = this.theId;
             this.myStorage.setItem('userId', this.theId);
-            console.log("STORAGE: " + this.myStorage['userId']);
+            //console.log("STORAGE: " + this.myStorage['userId']);
             this.myStorage.setItem('user', this.usr);
             //this.myStorage.setItem('currentUser', JSON.stringify (this.usr));
             if (this.theId != '-1') {

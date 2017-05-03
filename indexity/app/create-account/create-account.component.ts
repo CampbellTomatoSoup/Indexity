@@ -13,7 +13,6 @@ import { Location } from '@angular/common';
 })
 
 export class CreateAccountComponent {
-
   errorMessage: null | string = null;
   theId: string;
   usr =  new User('','','','','','','','','');
