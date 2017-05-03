@@ -58,5 +58,5 @@ export class CompareComponent implements OnInit {
 		            "font-size": "12px"
 		        });
 		})
-	}
+}
 }

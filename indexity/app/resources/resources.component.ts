@@ -1,14 +1,40 @@
 import { Component, OnInit } from '@angular/core';
+import { APIRepository } from '../api/user-repository';
+import { ActivatedRoute, Router, Params } from '@angular/router';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { User } from '../api/user';
 
 @Component({
 	selector: 'resources',
 	templateUrl: './app/resources/resources.component.html',
-  	styleUrls: [ './app/resources/resources.component.css' ]
+  	styleUrls: [ './app/resources/resources.component.css' ],
+		providers: [ APIRepository ]
 })
 
 export class ResourcesComponent implements OnInit {
+errorMessage: null | string = null;
+ theId: string;
+ usr =  new User('','','','','','','','', 0);
+ myStorage = localStorage;
 
-	ngOnInit() { }
+ constructor (private userService: APIRepository, private router: Router) {}
 
-	
+	ngOnInit() {
+	getAll(): Promise<Person>{
+     return this.http
+       .get(`${this.baseUrl}/people`, {headers: this.getHeaders()})
+       .toPromise()
+       .then(mapPersons)
+       .catch(handleError);
+   }
+
+	 private handleError(error: any): Promise<any> {
+	     console.error('An error occurred', error);
+	     return Promise.reject(error.message || error);
+	   }
+
+submitted = false;
+onSubmit() {
+	this.submitted = true;
 }
+ }
