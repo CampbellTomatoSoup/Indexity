@@ -15,6 +15,7 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
   providers: [ APIRepository ]
 })
 export class SearchComponent implements OnInit {
+
   constructor(private userService: APIRepository, private router: Router) { }
 
   public user: User;

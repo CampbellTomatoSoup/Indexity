@@ -102,6 +102,7 @@ SearchComponent = __decorate([
         providers: [user_repository_1.APIRepository]
     }),
     __metadata("design:paramtypes", [user_repository_1.APIRepository, router_1.Router])
+
 ], SearchComponent);
 exports.SearchComponent = SearchComponent;
 //# sourceMappingURL=search.component.js.map
