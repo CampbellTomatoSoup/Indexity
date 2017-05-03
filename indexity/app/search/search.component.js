@@ -47,39 +47,7 @@ let SearchComponent = class SearchComponent {
             city1: null,
             city2: null
         };
-    } /*
-    errorMessage: null | string = null;
-    mode = 'Promise';
-    theId: string;
-    usr =  new User('','');
-    location: Location;
-    
-    login(theUser: User) {
-      console.log(theUser);
-      if (!theUser) { return; }
-      this.userService.login(theUser)
-      .then (
-        id  => {
-          this.theId = id;
-          if (this.theId != '-1') { this.router.navigateByUrl('/compare'); }
-          else { this.errorMessage = 'error'; }
-        })
-      .catch(
-        err => {
-          this.errorMessage = err;
-        }
-      );
     }
-    
-    goBack(): void {
-      this.location.back();
-    }
-    
-    submitted = false;
-    onSubmit() {
-      this.submitted = true;
-    }
-    */
     save(isValid, f) {
         console.log(f);
     }
