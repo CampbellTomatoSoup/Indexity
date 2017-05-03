@@ -30,6 +30,16 @@ public login(user: User) : Promise<any> {
 		)
     .catch(this.handleError);
 }
+/*
+public saveSelections(theId: string, origin: string, dest: string) : Promise<any> {
+  let options = new RequestOptions({ headers: this.headers });
+  const url = this.__url;
+  return this.http.post(url + '/search', {"userId":theId, "originCity":origin, "destinationCity":dest})
+		.toPromise()
+    .then ( this.extractData.userid )
+    .catch ( this.handleError );
+}
+*/
 
 public getResources(): Promise<any> {
 	let options = new RequestOptions({headers: this.headers});

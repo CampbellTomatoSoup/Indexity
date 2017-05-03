@@ -33,6 +33,16 @@ let APIRepository = class APIRepository {
             .then(this.extractData)
             .catch(this.handleError);
     }
+    /*
+    public saveSelections(theId: string, origin: string, dest: string) : Promise<any> {
+      let options = new RequestOptions({ headers: this.headers });
+      const url = this.__url;
+      return this.http.post(url + '/search', {"userId":theId, "originCity":origin, "destinationCity":dest})
+            .toPromise()
+        .then ( this.extractData.userid )
+        .catch ( this.handleError );
+    }
+    */
     getResources() {
         let options = new http_2.RequestOptions({ headers: this.headers });
         const url = this.__url;

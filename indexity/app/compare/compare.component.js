@@ -43,7 +43,8 @@ let CompareComponent = class CompareComponent {
                 .attr("x", function (d) { return d.x; })
                 .attr("y", function (d) { return d.y + 5; })
                 .attr("text-anchor", "middle")
-                .text(function (d) { return d["Amount"]; })
+                .text(function (d) { return d["City"]; })
+                .text(function (d) { return d["Total"]; })
                 .style({
                 "fill": "white",
                 "font-family": "Helvetica Neue, Helvetica, Arial, san-serif",

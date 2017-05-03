@@ -19,10 +19,10 @@ errorMessage: null | string = null;
 
  constructor (private userService: APIRepository, private router: Router) {}
  ngOnInit() {
-getResources() {
-			this.userService.getResources()
+/*
+			this.userService.getResources() {
 				.then((result) => {
-			this.result = result.artists.items;
+			this.result =
 			this.result =
 			this.result =
 			this.result =
@@ -33,14 +33,18 @@ getResources() {
 		.catch((error) => console.error(error));
 	}
 }
-
-	 private handleError(error: any): Promise<any> {
+*/
+	/*handleError(error: any): Promise<any> {
 	     console.error('An error occurred', error);
 	     return Promise.reject(error.message || error);
 	   }
+
 
 submitted = false;
 onSubmit() {
 	this.submitted = true;
 	}
+ }
+ */
+ }
  }

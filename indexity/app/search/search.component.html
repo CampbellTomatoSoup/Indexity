@@ -1,68 +1,72 @@
 <div class = "container">
-  <h1>Indexity</h1>
-  <h3 class = "tagline"> "Go West young man!" </h3>
+          <h3 class = "tagline"> "Go West young man!" </h3>
+          <form class="cities">
+              <label>
+                Origin City
+              </label>
+              <select name="city1" [(ngModel)]="origin">
+                <option *ngFor="let city of cities" [value]="city.value">
+                  {{city.display}}
+                </option>
+              </select>
+              <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+              <label>
+                Destination City
+              </label>
+              <select name="city2" [(ngModel)]="dest">
+                <option *ngFor="let city of cities" [value]="city.value">
+                  {{city.display}}
+                </option>
+              </select>
+          </form>
 
-  <form #f="ngForm" novalidate>
-    <div>
-    <label>Origin City</label>
-    <select name="city1" [(ngModel)]="user.city1">
-        <option *ngFor="let city of cities" [value]="city.value">
-        {{city.display}}
-        </option>
-    </select>
-
-<form #f="ngForm" novalidate>
-  <div>
-  <label>Destination City</label>
-  <select name="city2" [(ngModel)]="user.city2">
-      <option *ngFor="let city of cities" [value]="city.value">
-      {{city.display}}
-      </option>
-  </select>
-
-  <h2> Pick your pieces. </h2>
-  <form #f="ngForm" novalidate>
-    <div>
-          <input type="checkbox" name="publicTrans"  [(ngModel)]="user.publicTrans">
-          <label> Public Transportation </label>
+          <h2> Pick your pieces. </h2>
+          <form>
+            <div class="form-group">
+              <input type="checkbox" name="publicTrans" id="publicTrans" [(ngModel)]="selec.publicTrans" name="publicTrans">
+              <label for="publicTrans">
+                Public Transportation
+              </label>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" name="housing" id="housing" [(ngModel)]="selec.housing" name="housing">
+              <label for="housing">
+                Housing
+              </label>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" name="utilities" id="utilities" [(ngModel)]="selec.utilities" name="utilities">
+              <label for="utilities">
+                Utilities
+              </label>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" name="groceries" id="groceries" [(ngModel)]="selec.groceries" name="groceries">
+              <label for="groceries">
+                Groceries
+              </label>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" name="healthcare" id="healthcare" [(ngModel)]="selec.healthcare" name="healthcare">
+              <label for="healthcare">
+                Healthcare
+              </label>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" name="incomeTax" id="incomeTax" [(ngModel)]="selec.incomeTax" name="incomeTax">
+              <label for="incomeTax">
+                Income Tax
+              </label>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" name="salesTax" id="salesTax" [(ngModel)]="selec.salesTax" name="salesTax">
+              <label for="salesTax">
+                Sales Tax
+              </label>
+            </div>
+          </form>
+  <div class="help-block" *ngIf="errorMessage">
+    Please select an origin city, destination city, and at least one expense.
   </div>
-  <div>
-    <label>
-        <input type="checkbox" name="housing"  [(ngModel)]="user.housing">
-        Housing
-    </label>
+  <a routerLink="/resources"><button type="submit" (click)="save()"> Let's look! </button></a>
 </div>
-<div>
-    <label>
-        <input type="checkbox" name="utilities"  [(ngModel)]="user.utilities">
-        Utilities
-    </label>
-</div>
-<div>
-    <label>
-        <input type="checkbox" name="groceries"  [(ngModel)]="user.groceries">
-        Groceries
-    </label>
-</div>
-<div>
-    <label>
-        <input type="checkbox" name="healthcare"  [(ngModel)]="user.healthcare">
-        Healthcare
-    </label>
-</div>
-<div>
-    <label>
-        <input type="checkbox" name="incomeTax"  [(ngModel)]="user.incomeTax">
-        Income Tax
-    </label>
-</div>
-<div>
-    <label>
-        <input type="checkbox" name="salesTax"  [(ngModel)]="user.salesTax">
-        Sales Tax
-    </label>
-</div>
-  </form>
-
-
-<a routerLink="/compare"><button type="submit"(click)="save(f.value, f.valid)"> Let's look! </button></a>

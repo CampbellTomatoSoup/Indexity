@@ -20,31 +20,35 @@ let ResourcesComponent = class ResourcesComponent {
         this.errorMessage = null;
         this.usr = new user_1.User('', '', '', '', '', '', '', '', 0);
         this.myStorage = localStorage;
-        this.submitted = false;
     }
     ngOnInit() {
-        getResources();
-        {
-            this.userService.getResources()
-                .then((result) => {
-                this.result = result.artists.items;
-                this.result =
+        /*
+                    this.userService.getResources() {
+                        .then((result) => {
                     this.result =
-                        this.result =
-                            this.result =
-                                this.result =
-                                    this.result =
-                ;
-            })
+                    this.result =
+                    this.result =
+                    this.result =
+                    this.result =
+                    this.result =
+                    this.result =
+                })
                 .catch((error) => console.error(error));
+            }
         }
-    }
-    handleError(error) {
-        console.error('An error occurred', error);
-        return Promise.reject(error.message || error);
-    }
+        */
+        /*handleError(error: any): Promise<any> {
+             console.error('An error occurred', error);
+             return Promise.reject(error.message || error);
+           }
+    
+    
+    submitted = false;
     onSubmit() {
         this.submitted = true;
+        }
+     }
+     */
     }
 };
 ResourcesComponent = __decorate([
