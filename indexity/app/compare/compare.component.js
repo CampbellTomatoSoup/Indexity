@@ -5,11 +5,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
+const user_repository_1 = require("../api/user-repository");
+const router_1 = require("@angular/router");
 let CompareComponent = class CompareComponent {
+    constructor(userService, router) {
+        this.userService = userService;
+        this.router = router;
+        this.myStorage = localStorage;
+        if (this.myStorage.getItem("userId") === null) {
+            console.log("there's a userid" + this.myStorage.getItem("userId"));
+            // navigate back to login and clear local storage
+            this.router.navigateByUrl("");
+            this.myStorage.removeItem("userId");
+        }
+    }
     ngOnInit() {
         var d3 = window['d3'];
+        //
         var diameter = 500, //max size of the bubbles
         color = d3.scale.category20b(); //color category
         var bubble = d3.layout.pack()
@@ -111,7 +128,8 @@ CompareComponent = __decorate([
         selector: 'resources',
         templateUrl: './app/compare/compare.component.html',
         styleUrls: ['./app/compare/compare.component.css']
-    })
+    }),
+    __metadata("design:paramtypes", [user_repository_1.APIRepository, router_1.Router])
 ], CompareComponent);
 exports.CompareComponent = CompareComponent;
 //# sourceMappingURL=compare.component.js.map

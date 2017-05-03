@@ -10,8 +10,8 @@ const core_1 = require("@angular/core");
 let AppComponent = class AppComponent {
     constructor() {
         this.title = "Indexity";
-        /*errorMessage: null | string = null;
-        theId: string;
+        this.errorMessage = null;
+        /*theId: string;
         usr =  new User('','','','','','','','',0);*/
         this.myStorage = localStorage;
         //constructor (private userService: APIRepository, private router: Router) {}
@@ -45,7 +45,15 @@ let AppComponent = class AppComponent {
         */
     }
     logout() {
-        //
+        this.currentUser = JSON.parse(this.myStorage['userId']);
+        var data = this.myStorage['userId'];
+        this.userService.logout(data)
+            .then(data => {
+            console.log(data);
+        })
+            .catch(err => {
+            this.errorMessage = err;
+        });
     }
 };
 AppComponent = __decorate([
