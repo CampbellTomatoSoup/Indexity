@@ -60,10 +60,6 @@ let CompareComponent = class CompareComponent {
 							{ width: 100%; } \
 							{ line-height: 1; } \
 							{ color: rgba(0, 0, 0, 0.8); } \
-							{ content: ";
-            25;
-            BC;
-            "; } \
 							{ position: absolute; } \
 							{ text-align: center; } \
 							.d3-tip.n:after \
@@ -74,19 +70,16 @@ let CompareComponent = class CompareComponent {
 							{ color: red; } \
 						</style>";
         });
-        /*
-
-        */
         svg.call(tip);
-        var circleAttrs = {
-            cx: function (d) { return xScale(d.x); },
-            cy: function (d) { return yScale(d.y); },
-            r: function (d) { return d.value; }
-        };
+        /*var circleAttrs = {
+cx: function(d) { return xScale(d.x); },
+cy: function(d) { return yScale(d.y); },
+r: function(d) { return d.value; }
+};*/
         d3.csv("indexity.csv", function (error, data) {
             //convert numerical values from strings to numbers
             data = data.map(function (d) { d.value = +d["Total"]; return d; });
-            document.getElementById("bubbles").align = "center";
+            //document.getElementById("bubbles").align = "center";
             //bubbles needs very specific format, convert data to this.
             var nodes = bubble.nodes({ children: data }).filter(function (d) { return !d.children; });
             //setup the chart

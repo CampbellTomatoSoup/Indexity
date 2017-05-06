@@ -27,6 +27,7 @@ export class LandingComponent {
     .then (
       id  => {
         this.theId = id._body;
+        console.log(this.theId);
         this.usr.userId = this.theId;
         this.myStorage.setItem('userId', this.theId);
         //this.myStorage.setItem('user', this.usr);

@@ -5,44 +5,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
+const user_repository_1 = require("../app/api/user-repository");
+const router_1 = require("@angular/router");
 let AppComponent = class AppComponent {
-    constructor() {
+    constructor(userService, router) {
+        this.userService = userService;
+        this.router = router;
         this.title = "Indexity";
         this.errorMessage = null;
         /*theId: string;
         usr =  new User('','','','','','','','',0);*/
         this.myStorage = localStorage;
-        //constructor (private userService: APIRepository, private router: Router) {}
-        this.ngOnInit = {
-            if(myStorage, getItem = ("userId") != null) {
-                console.log("there's a userid" + this.myStorage.getItem("userId"));
-            }
-        };
-        /*
-        login(theUser: User) {
-          if (!theUser) { return; }
-          this.userService.login(theUser)
-          .then (
-            id  => {
-              this.theId = id._body;
-              this.usr.userId = this.theId;
-              this.myStorage.setItem('userId', this.theId);
-              //this.myStorage.setItem('user', this.usr);
-              //this.myStorage.setItem('currentUser', JSON.stringify (this.usr));
-              if (this.theId != '-1') {
-                this.router.navigateByUrl('/search');
-              }
-              else { this.errorMessage = 'error'; }
-            })
-          .catch(
-            err => {
-              this.errorMessage = err;
-            }
-          );
+    }
+    ngOnInit() {
+        if (this.myStorage.getItem("userId") != null) {
+            console.log("there's a userid" + this.myStorage.getItem("userId"));
         }
-        */
     }
     logout() {
         this.currentUser = JSON.parse(this.myStorage['userId']);
@@ -61,7 +44,8 @@ AppComponent = __decorate([
         selector: 'app',
         templateUrl: './app/app.component.html',
         styleUrls: ['./app/app.component.css'],
-    })
+    }),
+    __metadata("design:paramtypes", [user_repository_1.APIRepository, router_1.Router])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

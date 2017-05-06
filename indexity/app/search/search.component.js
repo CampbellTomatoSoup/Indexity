@@ -24,6 +24,7 @@ let SearchComponent = class SearchComponent {
         this.userService = userService;
         this.router = router;
         this.errorMessage = null;
+        this.signout = null;
         this.origin = null;
         this.dest = null;
         this.usr = new user_1.User('', '', '', '', '', '', '', '', 0);
@@ -63,8 +64,9 @@ let SearchComponent = class SearchComponent {
         if (this.myStorage.getItem("userId") === null) {
             console.log("there's a userid" + this.myStorage.getItem("userId"));
             // navigate back to login and clear local storage
-            this.router.navigateByUrl("");
-            this.myStorage.removeItem("userId");
+            //this.router.navigateByUrl("");
+            //this.myStorage.removeItem("userId");
+            this.signout = "no current user";
         }
     }
     onSubmit() {

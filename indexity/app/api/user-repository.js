@@ -30,7 +30,10 @@ let APIRepository = class APIRepository {
         //the url is url + /login to access the login page.
         return this.http.post(url + '/login', { "username": user.username, "password": user.password })
             .toPromise()
-            .then(this.extractData.userid)
+            .then(
+        //this.extractData._body
+        //response => this.extractData(response) as string
+        this.extractData._body)
             .catch(this.handleError);
     }
     signup(user) {
@@ -39,7 +42,7 @@ let APIRepository = class APIRepository {
         //the url is url + /login to access the login page.
         return this.http.post(url + '/signup', { "email": user.email, "username": user.username, "password": user.password, "firstName": user.firstName, "lastName": user.lastName })
             .toPromise()
-            .then(this.extractData.userid)
+            .then(this.extractData._body)
             .catch(this.handleError);
     }
     changePassword(theId, oldpass, user) {
@@ -47,7 +50,7 @@ let APIRepository = class APIRepository {
         const url = this.__url;
         return this.http.post(url + '/changepassword', { "userId": theId, "oldPassword": oldpass, "newPassword": user.password })
             .toPromise()
-            .then(this.extractData.userid)
+            .then(this.extractData._body)
             .catch(this.handleError);
     }
     editAccount(theId, user) {
@@ -55,7 +58,7 @@ let APIRepository = class APIRepository {
         const url = this.__url;
         return this.http.post(url + '/edit', { "firstName": user.firstName, "lastName": user.lastName, "lastCity": user.lastCity, "currJob": user.currJob, "currSalary": user.currSalary, "userId": theId })
             .toPromise()
-            .then(this.extractData.userid)
+            .then(this.extractData._body) //.userid )
             .catch(this.handleError);
     }
     saveSelections(theId, origin, dest) {
@@ -63,7 +66,7 @@ let APIRepository = class APIRepository {
         const url = this.__url;
         return this.http.post(url + '/search', { "userId": theId, "originCity": origin, "destinationCity": dest })
             .toPromise()
-            .then(this.extractData.userid)
+            .then(this.extractData._body) //.userid )
             .catch(this.handleError);
     }
     logout(theId) {

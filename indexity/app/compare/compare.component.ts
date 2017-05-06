@@ -59,7 +59,6 @@ export class CompareComponent implements OnInit {
 							{ width: 100%; } \
 							{ line-height: 1; } \
 							{ color: rgba(0, 0, 0, 0.8); } \
-							{ content: "\25BC"; } \
 							{ position: absolute; } \
 							{ text-align: center; } \
 							.d3-tip.n:after \
@@ -71,22 +70,19 @@ export class CompareComponent implements OnInit {
 						</style>";
 
 					})
-					/*
-
-					*/
 					svg.call(tip);
 
-					var circleAttrs = {
+					/*var circleAttrs = {
           cx: function(d) { return xScale(d.x); },
           cy: function(d) { return yScale(d.y); },
           r: function(d) { return d.value; }
-      };
+      };*/
 
 		d3.csv("indexity.csv", function(error, data){
 				//convert numerical values from strings to numbers
 		    data = data.map(function(d){ d.value = +d["Total"]; return d; });
 
-				document.getElementById("bubbles").align = "center";
+				//document.getElementById("bubbles").align = "center";
 
 		    //bubbles needs very specific format, convert data to this.
 		    var nodes = bubble.nodes({children:data}).filter(function(d) { return !d.children; });

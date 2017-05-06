@@ -19,34 +19,36 @@ constructor(private http: Http) { }
 	  return body.data || { };
 	}
 
-public login(user: User) : Promise<any> {
+public login(user: User) : Promise<string> {
   let options = new RequestOptions({ headers: this.headers });
   const url = this.__url;
 	//the url is url + /login to access the login page.
   return this.http.post(url + '/login', {"username": user.username, "password":user.password})
     .toPromise()
     .then (
-			this.extractData.userid
+			//this.extractData._body
+			//response => this.extractData(response) as string
+			this.extractData._body as string
 		)
     .catch(this.handleError);
 }
 
-public signup(user: User) : Promise<any> {
+public signup(user: User) : Promise<string> {
   let options = new RequestOptions({ headers: this.headers });
   const url = this.__url;
 	//the url is url + /login to access the login page.
   return this.http.post(url + '/signup', {"email":user.email, "username": user.username, "password":user.password, "firstName":user.firstName, "lastName":user.lastName})
     .toPromise()
-    .then ( this.extractData.userid )
+    .then ( this.extractData._body as string )
     .catch(this.handleError);
 }
 
-public changePassword(theId: string, oldpass: string, user: User) : Promise<any> {
+public changePassword(theId: string, oldpass: string, user: User) : Promise<string> {
   let options = new RequestOptions({ headers: this.headers });
   const url = this.__url;
   return this.http.post(url + '/changepassword', {"userId": theId, "oldPassword": oldpass, "newPassword":user.password})
 		.toPromise()
-    .then ( this.extractData.userid )
+    .then ( this.extractData._body as string )
     .catch(this.handleError);
 }
 
@@ -55,16 +57,16 @@ public editAccount(theId: string, user: User) : Promise<any> {
   const url = this.__url;
   return this.http.post(url + '/edit', {"firstName":user.firstName, "lastName":user.lastName,"lastCity":user.lastCity, "currJob":user.currJob, "currSalary":user.currSalary, "userId":theId})
 		.toPromise()
-    .then ( this.extractData.userid )
+    .then ( this.extractData._body)//.userid )
     .catch ( this.handleError );
 }
 
-public saveSelections(theId: string, origin: string, dest: string) : Promise<any> {
+public saveSelections(theId: string, origin: string, dest: string) : Promise<string> {
   let options = new RequestOptions({ headers: this.headers });
   const url = this.__url;
   return this.http.post(url + '/search', {"userId":theId, "originCity":origin, "destinationCity":dest})
 		.toPromise()
-    .then ( this.extractData.userid )
+    .then ( this.extractData._body as string)//.userid )
     .catch ( this.handleError );
 }
 

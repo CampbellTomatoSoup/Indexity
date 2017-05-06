@@ -25,6 +25,7 @@ export class SearchComponent implements OnInit {
 //
   public user: User;
   errorMessage: null | string = null;
+  signout: null | string = null;
   theId: string;
   origin: string = null;
   dest: string = null;
@@ -41,9 +42,10 @@ export class SearchComponent implements OnInit {
     if (this.myStorage.getItem("userId") === null) { // ===
       console.log("there's a userid" + this.myStorage.getItem("userId"));
 			// navigate back to login and clear local storage
-			this.router.navigateByUrl("");
-			this.myStorage.removeItem("userId");
-      
+			//this.router.navigateByUrl("");
+			//this.myStorage.removeItem("userId");
+
+      this.signout = "no current user";
     }
   }
 

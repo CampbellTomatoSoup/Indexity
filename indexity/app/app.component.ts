@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../api/user';
-import { APIRepository } from '../api/user-repository';
+import { User } from '../app/api/user';
+import { APIRepository } from '../app/api/user-repository';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
 @Component ({
@@ -17,9 +17,9 @@ export class AppComponent {
     usr =  new User('','','','','','','','',0);*/
     myStorage = localStorage;
     currentUser: string;
-    //constructor (private userService: APIRepository, private router: Router) {}
+    constructor (private userService: APIRepository, private router: Router) {}
 
-    ngOnInit {
+    ngOnInit() {
       if (this.myStorage.getItem("userId") != null) { // ===
         console.log("there's a userid" + this.myStorage.getItem("userId"));
       }
