@@ -15,11 +15,13 @@ private __url = "http://34.208.232.114/api";
 constructor(private http: Http) { }
 
 	private extractData (res: Response) {
-	  let body = res.json();
-	  return body.data || { };
+		//let myObject = new JSONObject(res);
+		//console.log(myObject);
+		let body = res.json;//_body;
+	  return body || { };
 	}
 
-public login(user: User) : Promise<string> {
+public login(user: User) : Promise<any> {
   let options = new RequestOptions({ headers: this.headers });
   const url = this.__url;
 	//the url is url + /login to access the login page.
@@ -28,27 +30,27 @@ public login(user: User) : Promise<string> {
     .then (
 			//this.extractData._body
 			//response => this.extractData(response) as string
-			this.extractData._body as string
+			//this.extractData//.body// as Response
 		)
     .catch(this.handleError);
 }
 
-public signup(user: User) : Promise<string> {
+public signup(user: User) : Promise<any> {
   let options = new RequestOptions({ headers: this.headers });
   const url = this.__url;
 	//the url is url + /login to access the login page.
   return this.http.post(url + '/signup', {"email":user.email, "username": user.username, "password":user.password, "firstName":user.firstName, "lastName":user.lastName})
     .toPromise()
-    .then ( this.extractData._body as string )
+    .then ()// this.extractData)//.body)
     .catch(this.handleError);
 }
 
-public changePassword(theId: string, oldpass: string, user: User) : Promise<string> {
+public changePassword(theId: string, oldpass: string, user: User) : Promise<any> {
   let options = new RequestOptions({ headers: this.headers });
   const url = this.__url;
   return this.http.post(url + '/changepassword', {"userId": theId, "oldPassword": oldpass, "newPassword":user.password})
 		.toPromise()
-    .then ( this.extractData._body as string )
+    .then ()// this.extractData)//.body)
     .catch(this.handleError);
 }
 
@@ -57,16 +59,16 @@ public editAccount(theId: string, user: User) : Promise<any> {
   const url = this.__url;
   return this.http.post(url + '/edit', {"firstName":user.firstName, "lastName":user.lastName,"lastCity":user.lastCity, "currJob":user.currJob, "currSalary":user.currSalary, "userId":theId})
 		.toPromise()
-    .then ( this.extractData._body)//.userid )
+    .then ()// this.extractData)//.body)// as Response)//.userid )
     .catch ( this.handleError );
 }
 
-public saveSelections(theId: string, origin: string, dest: string) : Promise<string> {
+public saveSelections(theId: string, origin: string, dest: string) : Promise<any> {
   let options = new RequestOptions({ headers: this.headers });
   const url = this.__url;
   return this.http.post(url + '/search', {"userId":theId, "originCity":origin, "destinationCity":dest})
 		.toPromise()
-    .then ( this.extractData._body as string)//.userid )
+    .then ()// this.extractData)//.body)// as Response)//.userid )
     .catch ( this.handleError );
 }
 
@@ -75,7 +77,7 @@ public logout(theId: string) : Promise<any> {
   const url = this.__url;
   return this.http.post(url + '/logout', {"userId":theId})
 		.toPromise()
-    .then ( this.extractData )
+    .then ()// this.extractData)//.body )
     .catch ( this.handleError );
 }
 
